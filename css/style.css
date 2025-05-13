@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+body{
+background-color: #FF9C00;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+min-height: 100vh;
+}
+
+.menu {
+display: flex;
+justify-content: center;
+flex-direction: row;
+padding: 25px;
+margin-bottom: 50px;
+}
+.npr{
+  display: flex;
+justify-content: center;
+flex-direction: row;
+padding: 10px;
+margin-bottom: 200px;
+
+}
+.main {
+  font-family: 'Roboto';
+  background-color: #323232;
+  border: none;
+  color: #FBE8DA;
+  padding: 1px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 4px;
+  cursor: pointer;
+}
+.main:hover {
+background-color:#FBE8DA;
+color:#323232;
+}
+
+.single {
+  font-family: 'Roboto';
+  background-color: #FBE8DA;
+  border: none;
+  color: #323232;
+  padding: 1px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 4px;
+  cursor: pointer;
+
+}
+
+.single:hover {
+  background-color:#DD4939;
+color: #FBE8DA;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 25px;
+  }  
+
+
+    
+    
+    .profile {
+width: 650px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.album {
+  width: 700px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidi{
+  width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+
+}
+
+.bio {
+display: inline-block;
+justify-content: left;
+align-items: center;
+display: flex;
+flex-wrap: wrap;
+max-width: 200px;
+width: 0 auto;
+height: 0 auto;
+margin: 0 auto;
+font-family: 'Roboto';
+font-size: 24px;
+background-color: #323232;
+color: #FBE8DA;
+}
+
+.story {
+display: flex;
+flex-wrap: wrap;
+max-width: 700px;
+width: 0 auto;
+height: 0 auto;
+margin: 0 auto;
+padding: 1rem;
+line-height: normal;
+text-align: justify;
+color: #323232;
+font-size: 16px;
+font-style:normal;
+font-weight: 450;
+}
+
+.logo { 
+font-family: 'Roboto';
+color: #FBE8DA;  
+text-align: left;
+text-indent: 10px;
+}
+

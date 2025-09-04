@@ -61,6 +61,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
   max-width: 350px;
   height: auto;
 }
@@ -101,44 +103,6 @@
 
         }
 
-        .wind {
-          display: flex;
-          height: 400px;
-          width: 800px;
-          max-width: 800px;
-          object-fit: cover;
-          object-position: bottom;
-          padding: 100px;
-          }
-
-        .mashed {
-          display: flex;
-          height: 400px;
-          width: 800px;
-          max-width: 800px;
-          object-fit: cover;
-          object-position: bottom;
-          padding: 100px;
-          }
-
-          .fatum{
-          display: flex;
-          height: 400px;
-          width: 800px;
-          max-width: 800px;
-          object-fit: cover;
-          object-position: bottom;
-          padding: 100px;
-          }
-          .salwa {
-          display: flex;
-          height: 400px;
-          width: 800px;
-          max-width: 800px;
-          object-fit: cover;
-          object-position: bottom;
-          padding: 100px;
-          }
           .content {
             max-width: 350px;
             margin: 0 auto;
@@ -199,6 +163,7 @@
       font-weight: 900;
       line-height: 1.1;
       margin-bottom: 30px;
+      margin-top: 30px;
     }
 
     .tour-dates {
@@ -208,35 +173,67 @@
     }
 
     .tour-dates li {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
     }
 
     .date-box {
-      background: #323232;
-      color: #fff;
-      font-weight: bold;
-      padding: 1px 5px;
-      margin-right: 12px;
-      text-transform: uppercase;
-      font-size: 1rem;
-      border-radius: 0px;
-      white-space: nowrap;
-    }
+  position: relative;
+  background: #323232;
+  color: #fff;
+  font-weight: bold;
+  padding: 4px 12px;
+  margin-right: 12px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
 
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.2s ease;
-    }
+.date-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
 
-    a:hover {
-      color: #ffffff;
-      background-color: #323232;
-      padding: 2px 5px;
-    }
+.date-box span {
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+a:hover .date-box::before {
+  left: 0; /* slide white background in */
+}
+
+a:hover .date-box span {
+  color: #323232; /* switch text color smoothly */
+}
+
+a:hover {
+  letter-spacing: 2px; /* elegant spacing effect */
+  font-weight: lighter;
+  color: #323232;
+}
    </style>
 </head>
 <body>
@@ -252,11 +249,11 @@
       WEST COAST<br>TOUR
     </div>
     <ul class="tour-dates">
-      <li><a href="https://www.ticketweb.com/event/clock-out-lounge-presents-nour-clock-out-lounge-tickets/14520403?pl=clockout"target="_blank" rel="noopener noreferrer"><span class="date-box">Nov 15</span>Seattle, WA</a></li>
-      <li><a href="https://www.lonelygodpdx.com/events/nour-harkati-guests-the-village-ballroom" target="_blank" rel="noopener noreferrer"><span class="date-box">Nov 16</span>Portland, OR</a></li>
-      <li><a href="https://www.ticketweb.com/event/nour-harkati-the-crepe-place-tickets/14533463" target="_blank" rel="noopener noreferrer"><span class="date-box">Nov 20</span>Santa Cruz, CA</a></li>
-      <li><a href="#"><span class="date-box">Nov 21</span>San Francisco, CA</a></li>
-      <li><a href="#"><span class="date-box">Nov 22</span>Venice Beach, CA</a></li>
+      <li><a href="https://www.ticketweb.com/event/clock-out-lounge-presents-nour-clock-out-lounge-tickets/14520403?pl=clockout"target="_blank" rel="noopener noreferrer"><span class="date-box">nov 15</span>Seattle, WA</a></li>
+      <li><a href="https://www.lonelygodpdx.com/events/nour-harkati-guests-the-village-ballroom" target="_blank" rel="noopener noreferrer"><span class="date-box">nov 16</span>Portland, OR</a></li>
+      <li><a href="https://www.ticketweb.com/event/nour-harkati-the-crepe-place-tickets/14533463" target="_blank" rel="noopener noreferrer"><span class="date-box">nov 20</span>Santa Cruz, CA</a></li>
+      <li><a href="#"><span class="date-box">nov 21</span>San Francisco, CA</a></li>
+      <li><a href="#"><span class="date-box">nov 22</span>Venice Beach, CA</a></li>
       <li><a href="https://www.eventbrite.com/e/desert-daze-presents-nour-harkati-tickets-1623473726619?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=ebdsshcopyurl" target="_blank" rel="noopener noreferrer"><span class="date-box">Nov 23</span>Los Angeles, CA</a></li>
     </ul>
   </div>

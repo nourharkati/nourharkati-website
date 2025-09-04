@@ -14,6 +14,9 @@
   font-size: 0.95rem;
   line-height: .85rem;
     }
+ .tour-container {
+      max-width: 500px;
+    }
   .tour-title {
       font-size: 2.5rem;
       font-weight: 900;

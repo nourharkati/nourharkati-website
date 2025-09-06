@@ -103,20 +103,13 @@
 
         }
 
-          .content {
-            max-width: 350px;
-            margin: 0 auto;
-            padding: 0 15px;
-            text-align: justify;
-            text-justify: inter-word;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            /* height: calc(100vh - 200px); */
-            padding-top: 50px;
-            
-        }
+          .contact {
+    font-family: "Baskerville Old Face", serif;
+    display: flex;          /* ✅ use flexbox instead of inline-block */
+    justify-content: center;
+    gap: 20px;              /* ✅ this adds the space between them */
+    margin: 100px 0 120px 0;
+}
 
         .content p {
             color: #323232;

@@ -15,6 +15,20 @@
       font-style: normal;
     }
 
+    @font-face {
+      font-family: 'PixelAE';
+      src: url('/fonts/PixelAE-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'PixelAE';
+      src: url('/fonts/PixelAE-Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
     body {
       margin: 0;
       font-family: 'Public Pixel', sans-serif;
@@ -44,15 +58,15 @@
     }
 
     .arabic-tittle {
-      font-family: Courier New, Courier, monospace;
+      font-family: 'pixelAE';
       font-size: 2em;
       text-align: center;
       color: #323232;
-      font-weight: lighter;
+      font-weight: bold;
       letter-spacing: 2px;
       margin-top: 90px;
       margin-bottom: 30px;
-      padding: 2px;
+      padding: 10px;
       display: inline-block;
       text-decoration: none;
       transition: 0.2s ease-in-out;
@@ -63,6 +77,8 @@
       background-color: #323232;
       border-color: #323232;
       cursor: pointer;
+      padding: 10px;
+      transition: 0.2s ease-in-out;
     }
 
     .image {

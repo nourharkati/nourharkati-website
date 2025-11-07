@@ -190,7 +190,6 @@
     }
 
     .tour-dates li {
-        
       margin: 15px 0;
       font-size: 0.8rem;
       display: flex;
@@ -211,6 +210,7 @@
       overflow: hidden;
       transition: all 0.4s ease;
     }
+
     .date-box:hover {
       background-color: #fff;
       color: #000;
@@ -261,6 +261,36 @@
       background-color: #fff;
       color: #000;
       cursor: pointer;
+    }
+
+    /* --- New cassette image and buy button --- */
+    .cassette-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .cassette-section img {
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto 15px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Public Pixel', sans-serif;
+      font-weight: bold;
+      font-size: 0.8rem;
+      text-transform: lowercase;
+      padding: 10px 25px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .buy-btn:hover {
+      background-color: #323232;
     }
   </style>
 </head>
@@ -322,6 +352,13 @@
     <iframe style="width: 350px; height: 406px;" src="https://bandcamp.com/EmbeddedPlayer/album=1015753454/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/" seamless>
       <a href="https://nourharkati.bandcamp.com/album/moulena">Moulena by Nour Harkati</a>
     </iframe>
+
+    <!-- New cassette image + buy button -->
+    <div class="cassette-section">
+      <img src="/img/Nourharkati-cassette-moulena.jpg" alt="Moulena cassette by Nour Harkati">
+      <a href="https://nourharkati.bandcamp.com/merch" target="_blank" rel="noopener noreferrer" class="buy-btn">buy</a>
+    </div>
+
   </div>
 
   <div class="contact">

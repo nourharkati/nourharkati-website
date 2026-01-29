@@ -1,119 +1,426 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nour Harkati - Under Construction</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nour Harkati</title>
 
-  <style>
-    @font-face {
-      font-family: "Cygnito Mono";
-      src: url("fonts/cygnito-mono-regular.otf") format("opentype");
-    }
+    <!-- Preload font -->
+    <link
+      rel="preload"
+      href="fonts/cygnito-mono-regular.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Cygnito Mono", monospace;
-      background: #1137c7;
-      color: #e9f0ff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      cursor: 
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23FF9C00'/></svg>")
-        10 10, auto;
-    }
-
-    /* Container */
-    .construction-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    /* Pulsing neon text */
-    .construction-text {
-      font-size: clamp(32px, 8vw, 72px);
-      letter-spacing: 0.2em;
-      color: #f6a434;
-      text-transform: uppercase;
-      animation: neonGlow 1s ease-in-out infinite alternate;
-    }
-
-    @keyframes neonGlow {
-      0% {
-        text-shadow: 0 0 4px #f6a434, 0 0 8px #f6a434, 0 0 12px #f6a434;
+    <style>
+      @font-face {
+        font-family: "Cygnito Mono";
+        src: url("fonts/cygnito-mono-regular.otf") format("opentype");
+        font-display: swap;
       }
-      50% {
-        text-shadow: 0 0 12px #f6a434, 0 0 24px #f6a434, 0 0 36px #f6a434;
+
+      :root {
+        --mobile-gutter: 20px;
+        --blue: #1137c7;
+        --orange: #f6a434;
+        --offwhite: #e9f0ff;
       }
-      100% {
-        text-shadow: 0 0 4px #f6a434, 0 0 8px #f6a434, 0 0 12px #f6a434;
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
 
-    /* Typing effect */
-    .typing-text {
-      font-size: clamp(16px, 2.5vw, 28px);
-      margin-top: 16px;
-      letter-spacing: 0.05em;
-      border-right: 2px solid #f6a434;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      color: #f6a434;
-      animation: typing 5s steps(46, end) forwards, blink-caret 0.7s step-end infinite;
-    }
+      body {
+        font-family: "Cygnito Mono", monospace;
+        background: var(--blue);
+        color: var(--offwhite);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        cursor:
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23FF9C00'/></svg>")
+            10 10,
+          auto;
+      }
 
-    @keyframes typing {
-      0% { width: 0; }
-      100% { width: 46ch; }
-    }
+      a {
+        text-decoration: none;
+        color: inherit;
+        cursor:
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%231137c7'/></svg>")
+            10 10,
+          pointer;
+      }
 
-    @keyframes blink-caret {
-      50% { border-color: transparent; }
-      100% { border-color: #f6a434; }
-    }
+      ::selection {
+        background: var(--orange);
+        color: var(--blue);
+      }
 
-    /* Floating dots container */
-    .dot {
-      position: absolute;
-      width: 6px; height: 6px;
-      background: #f6a434;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: moveDots linear infinite;
-    }
+      /* -------------------------------- */
+      /* BRACKET HOVER UTILITY */
+      /* -------------------------------- */
+      .bracket-hover {
+        position: relative;
+      }
 
-    @keyframes moveDots {
-      0% { transform: translate(0, 0) scale(1); opacity:0.5; }
-      50% { transform: translate(200px, -100px) scale(1.5); opacity:1; }
-      100% { transform: translate(-200px, 150px) scale(1); opacity:0.5; }
-    }
-  </style>
-</head>
+      .bracket-hover::before,
+      .bracket-hover::after {
+        opacity: 0;
+        transition: opacity 0.15s ease;
+      }
 
-<body>
-  <div class="construction-overlay">
-    <div class="construction-text">UNDER CONSTRUCTION</div>
-    <div class="typing-text">Stay tuned for Nour Harkati’s official site…</div>
+      .bracket-hover::before {
+        content: "[ ";
+      }
 
-    <!-- Add lots of animated dots -->
-    <div class="dot" style="top:10%; left:10%; animation-duration: 6s; animation-delay: 0s;"></div>
-    <div class="dot" style="top:20%; left:50%; animation-duration: 8s; animation-delay: 1s;"></div>
-    <div class="dot" style="top:50%; left:30%; animation-duration: 5s; animation-delay: 2s;"></div>
-    <div class="dot" style="top:70%; left:20%; animation-duration: 7s; animation-delay: 3s;"></div>
-    <div class="dot" style="top:80%; left:75%; animation-duration: 6s; animation-delay: 4s;"></div>
-    <div class="dot" style="top:40%; left:80%; animation-duration: 5s; animation-delay: 2.5s;"></div>
-    <div class="dot" style="top:60%; left:60%; animation-duration: 9s; animation-delay: 1.2s;"></div>
-  </div>
-</body>
+      .bracket-hover::after {
+        content: " ]";
+      }
+
+      .bracket-hover:hover::before,
+      .bracket-hover:hover::after {
+        opacity: 1;
+      }
+
+      /* -------------------------------- */
+      /* SITE TITLE */
+      /* -------------------------------- */
+      .site-title {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 18px 48px 10px;
+        background: var(--blue);
+        border-bottom: 1px solid transparent;
+      }
+
+      .site-title a {
+        font-size: 18px;
+        letter-spacing: 0.25em;
+        background: var(--orange);
+        color: var(--blue);
+        padding: 4px 8px;
+        display: inline-block;
+      }
+
+      /* -------------------------------- */
+      /* MAIN WRAPPER */
+      /* -------------------------------- */
+      .wrapper {
+        flex: 1;
+        display: grid;
+        grid-template-columns: minmax(320px, 1.1fr) minmax(300px, 0.9fr);
+        padding: 60px 48px 48px;
+        gap: 40px;
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h1.hero {
+        font-size: clamp(22px, 3.4vw, 40px);
+        line-height: 1.15;
+        letter-spacing: 0.08em;
+        font-weight: normal;
+      }
+
+      .hero span {
+        display: block;
+      }
+
+      .bio {
+        margin-top: 36px;
+        max-width: 520px;
+        font-size: 13px;
+        line-height: 1.65;
+        letter-spacing: 0.03em;
+        color: #ffffff;
+      }
+
+      .bio p {
+        margin-bottom: 16px;
+      }
+
+      .social {
+        margin-top: 20px;
+        display: flex;
+        gap: 24px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+      }
+
+      .social a {
+        background: var(--orange);
+        color: var(--blue);
+        padding: 2px 6px;
+        font-weight: 500;
+      }
+
+      /* -------------------------------- */
+      /* RIGHT COLUMN */
+      /* -------------------------------- */
+      .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .topbar {
+        padding-bottom: 20px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+      }
+
+      .menu {
+        display: flex;
+        gap: 36px;
+      }
+
+      .menu a {
+        background: var(--orange);
+        color: var(--blue);
+        padding: 2px 6px;
+        white-space: nowrap;
+        font-weight: 500;
+      }
+
+      .gallery {
+        width: 88%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+      }
+
+      .gallery-link {
+        display: block;
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* -------------------------------- */
+      /* FOOTER */
+      /* -------------------------------- */
+      .footer {
+        padding: 20px 48px;
+        margin-top: 48px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        display: flex;
+        gap: 48px;
+        border-top: 1px dotted rgba(233, 240, 255, 0.2);
+      }
+
+      .booking {
+        color: rgba(233, 240, 255, 0.65);
+        margin-bottom: 4px;
+      }
+
+      .footer a {
+        background: var(--orange);
+        color: var(--blue);
+        padding: 4px 10px;
+        font-weight: 500;
+      }
+
+      /* -------------------------------- */
+      /* MOBILE */
+      /* -------------------------------- */
+      @media (max-width: 900px) {
+        body {
+          align-items: center;
+        }
+
+        .site-title,
+        .footer {
+          padding-left: var(--mobile-gutter);
+          padding-right: var(--mobile-gutter);
+          width: 100%;
+          max-width: 520px;
+        }
+
+        .wrapper {
+          display: flex;
+          flex-direction: column;
+          max-width: 520px;
+          padding: 16px 0 32px;
+          gap: 24px;
+        }
+
+        .right {
+          order: 1;
+          gap: 18px;
+        }
+
+        .menu {
+          flex-wrap: nowrap;
+          justify-content: center;
+          gap: 16px;
+          font-size: 12px;
+        }
+
+        .gallery {
+          width: 100%;
+          max-width: 420px;
+        }
+
+        .left {
+          order: 2;
+          padding-left: var(--mobile-gutter);
+          padding-right: var(--mobile-gutter);
+        }
+
+        .hero {
+          margin-top: 8px;
+        }
+
+        .social {
+          flex-wrap: wrap;
+        }
+
+        .footer {
+          margin-top: 32px;
+        }
+      }
+
+      /* -------------------------------- */
+      /* REDUCED MOTION */
+      /* -------------------------------- */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-title">
+      <a class="bracket-hover" href="https://nourharkati.net/"
+        >NOUR&nbsp;HARKATI</a
+      >
+    </header>
+
+    <main class="wrapper">
+      <section class="left">
+        <h1 class="hero">
+          <span>TOUR</span>
+          <span>DATES</span>
+          <span>COMING SOON</span>
+        </h1>
+
+        <div class="bio">
+          <p>
+        Nour Harkati is a Tunisian, New York–based musician, singer-songwriter,
+        and Guembri player, blending ancestral North African traditions with
+        contemporary urban sound. Rooted in Gnawa rhythms and shaped by eight
+        years in New York, his music is meditative, kinetic, and deeply groovy.
+      </p>
+
+      <p>
+        The latest album, Moulena (December 2024), fuses the Guembri with NYC
+        urban groove, electronics, and modern songcraft, exploring migration,
+        memory, and belonging. It premiered on KEXP and was celebrated at Public
+        Records in New York.
+      </p>
+
+      <p>
+        Harkati has toured the U.S, performed at GlobalFEST, Celebrate Brooklyn,
+        and Habibi Festival, and in January 2026 begins a one-month residency at
+        Pioneer Works. Across continents, he continues to honor lineage while
+        pushing it forward.
+      </p>
+        </div>
+
+        <div class="social">
+          <a
+            class="bracket-hover"
+            href="https://www.instagram.com/nour.harkati/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Instagram</a
+          >
+          <a
+            class="bracket-hover"
+            href="https://nourharkati.bandcamp.com/album/moulena"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Bandcamp</a
+          >
+          <a
+            class="bracket-hover"
+            href="https://www.bandsintown.com/a/1490660"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Bandsintown</a
+          >
+        </div>
+      </section>
+
+      <section class="right">
+        <nav class="topbar menu">
+          <a
+            class="bracket-hover"
+            href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
+            target="_blank"
+            >Music</a
+          >
+          <a
+            class="bracket-hover"
+            href="https://www.youtube.com/watch?v=o9s17K4tXbk"
+            target="_blank"
+            >KEXP</a
+          >
+          <a
+            class="bracket-hover"
+            href="https://www.bandsintown.com/a/1490660"
+            target="_blank"
+            >Shows</a
+          >
+          <a
+            class="bracket-hover"
+            href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
+            target="_blank"
+            >Press</a
+          >
+        </nav>
+
+        <div class="gallery">
+          <a
+            class="gallery-link"
+            href="https://nourharkati.bandcamp.com/album/moulena"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Nour Harkati – Moulena album"
+          >
+            <img
+              class="gallery-img"
+              src="img/nourharkati-album-moulena.jpg"
+              alt="Nour Harkati portrait for Moulena album"
+            />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <div class="booking">[Booking]</div>
+        <a class="bracket-hover" href="mailto:dgaar@atomicmusicgroup.com"
+          >David Gaar</a
+        >
+      </div>
+    </footer>
+  </body>
 </html>

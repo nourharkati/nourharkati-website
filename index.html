@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,232 +6,426 @@
     <title>Nour Harkati</title>
 
     <style>
-      /* Load your local font */
       @font-face {
-        font-family: "Determination Mono";
-        src: url("/fonts/DeterminationMonoWebRegular-Z5oq.ttf")
-          format("truetype");
-        font-weight: 400;
-        font-style: normal;
+        font-family: "Cygnito Mono";
+        src: url("fonts/cygnito-mono-regular.otf") format("opentype");
+      }
+
+      :root {
+        --mobile-gutter: 20px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
-        margin: 0;
-        font-family: "Determination Mono", monospace;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background-color: #ffffff;
-        color: #323232;
+        font-family: "Cygnito Mono", monospace;
+        background: #1137c7;
+        color: #e9f0ff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        cursor:
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23FF9C00'/></svg>")
+            10 10,
+          auto;
+      }
+
+      a {
+        cursor:
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%231137c7'/></svg>")
+            10 10,
+          pointer;
+      }
+
+      ::selection {
+        background: #f6a434;
+        color: #1137c7;
+      }
+
+      .site-title {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 18px 48px 10px;
+        background: #1137c7;
+      }
+
+      .site-title a {
+        font-size: 18px;
+        letter-spacing: 0.25em;
+        background: #f6a434;
+        color: #1137c7;
+        padding: 4px 8px;
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+      }
+
+      .site-title a::before,
+      .site-title a::after {
+        opacity: 0;
+      }
+
+      .site-title a::before {
+        content: "[ ";
+      }
+      .site-title a::after {
+        content: " ]";
+      }
+
+      .site-title a:hover::before,
+      .site-title a:hover::after {
+        opacity: 1;
+      }
+
+      .wrapper {
+        flex: 1;
+        display: grid;
+        grid-template-columns: minmax(320px, 1.1fr) minmax(300px, 0.9fr);
+        padding: 60px 48px 48px;
+        gap: 40px;
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero {
+        font-size: clamp(22px, 3.4vw, 40px);
+        line-height: 1.15;
+        letter-spacing: 0.08em;
+      }
+
+      .hero span {
+        display: block;
+      }
+
+      .bio {
+        margin-top: 36px;
+        max-width: 520px;
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.65;
+        letter-spacing: 0.03em;
+        color: rgba(233, 240, 255, 0.65);
+      }
+
+      .bio p {
+        margin-bottom: 16px;
+      }
+
+      .social {
+        margin-top: 20px;
+        display: flex;
+        gap: 24px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+      }
+
+      .social a {
+        background: #f6a434;
+        color: #1137c7;
+        padding: 2px 6px;
+        text-decoration: none;
+        position: relative;
+      }
+
+      .social a::before,
+      .social a::after {
+        opacity: 0;
+      }
+
+      .social a::before {
+        content: "[ ";
+      }
+      .social a::after {
+        content: " ]";
+      }
+
+      .social a:hover::before,
+      .social a:hover::after {
+        opacity: 1;
+      }
+
+      .right {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        font-weight: 400;
-        font-size: 0.75rem;
-        line-height: 1.2rem;
       }
 
-      .arabic-tittle {
-        font-size: 1.4em;
-        text-align: center;
-        color: #323232;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        padding: 2px 6px;
-        display: inline-block;
-        text-decoration: none;
-        transition: 0.2s ease-in-out;
-      }
-
-      .arabic-tittle:hover {
-        color: white;
-        background-color: #323232;
-        cursor: pointer;
-      }
-
-      .image {
-        display: block;
-        margin: 30px auto;
-        max-width: 350px;
-        height: auto;
+      .topbar {
+        padding-bottom: 20px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
       }
 
       .menu {
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 10px 0 20px 0;
+        gap: 36px;
       }
 
       .menu a {
+        background: #f6a434;
+        color: #1137c7;
         text-decoration: none;
-        color: #323232;
-        font-size: 0.9rem;
-        padding: 2px 4px;
-        display: inline-block;
-        transition: 0.2s ease-in-out;
+        padding: 2px 6px;
+        white-space: nowrap;
+        position: relative;
       }
 
-      .menu a:hover {
-        color: white;
-        background-color: #323232;
+      .menu a::before,
+      .menu a::after {
+        opacity: 0;
       }
 
-      .content {
-        max-width: 350px;
-        margin: 0 auto;
-        padding: 50px 15px 0;
-        text-align: justify;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      .menu a::before {
+        content: "[ ";
+      }
+      .menu a::after {
+        content: " ]";
       }
 
-      .content p {
-        font-size: 0.9rem;
-        line-height: 2;
-        font-weight: 400;
+      .menu a:hover::before,
+      .menu a:hover::after {
+        opacity: 1;
       }
 
-      iframe {
+      .gallery {
+        width: 88%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+      }
+
+      .gallery a {
+        display: block;
+      }
+
+      .gallery-img {
         width: 100%;
-        border: 0;
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
 
-      .contact {
+      .footer {
+        padding: 20px 48px;
+        margin-top: 48px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 100px 0 120px 0;
+        gap: 48px;
+        border-top: 1px dotted rgba(233, 240, 255, 0.2);
       }
 
-      .contact a {
+      .booking {
+        color: rgba(233, 240, 255, 0.65);
+        margin-bottom: 4px;
+      }
+
+      .footer a {
+        background: #f6a434;
+        color: #1137c7;
+        padding: 4px 10px;
         text-decoration: none;
-        color: #323232;
-        font-weight: 400;
-        font-size: 0.9rem;
-        padding: 2px 8px;
-        display: inline-block;
-        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        position: relative;
       }
 
-      .contact a:hover {
-        color: white;
-        background-color: #323232;
-        transition: 0.1s ease-in-out;
+      .footer a::before,
+      .footer a::after {
+        opacity: 0;
+      }
+
+      .footer a::before {
+        content: "[ ";
+      }
+      .footer a::after {
+        content: " ]";
+      }
+
+      .footer a:hover::before,
+      .footer a:hover::after {
+        opacity: 1;
+      }
+
+      @media (max-width: 900px) {
+        body {
+          align-items: center;
+        }
+
+        .site-title,
+        .left,
+        .footer {
+          padding-left: var(--mobile-gutter);
+          padding-right: var(--mobile-gutter);
+        }
+
+        .site-title {
+          width: 100%;
+          max-width: 520px;
+          margin: 0 auto;
+        }
+
+        .wrapper {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "gallery"
+            "menu"
+            "content";
+          padding: 16px 0 36px;
+          max-width: 520px;
+          width: 100%;
+          gap: 26px;
+        }
+
+        .right {
+          grid-area: gallery;
+          width: 100%;
+        }
+
+        .topbar {
+          display: flex;
+          justify-content: center;
+        }
+
+        .menu {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 18px;
+        }
+
+        .gallery {
+          width: 100%;
+          max-width: 420px;
+          margin: 0 auto;
+        }
+
+        .footer {
+          width: 100%;
+          max-width: 520px;
+          margin: 24px auto 0;
+        }
       }
     </style>
   </head>
 
   <body>
-    <a href="https://www.nourharkati.net/" class="arabic-tittle">NOUR HARKATI</a>
-
-    <!-- <a href="https://www.youtube.com/watch?v=4APwBedcl9w" target="_blank" rel="noopener noreferrer">
-    <img class="image" src="/img/live-shows-nourharkati.gif" alt="nour harkati, guembri, Gnawa music, north african, artist, composer, New York, Tunisia, Moulena, sound designer, guembri, sintir">
-  </a> -->
-
-    <a
-      href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        class="image"
-        src="/img/kexp-nourharkati.png"
-        alt="nour harkati, kexp, kexp live, guembri, Gnawa music, north african, artist, composer, New York, Tunisia, Moulena, sound designer, guembri, sintir"
-      />
-    </a>
-
-    <div class="content">
-      <div class="menu">
-        <a
-          href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Music</a
-        >
-        <a
-          href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Kexp</a
-        >
-        <a
-          href="https://www.bandsintown.com/a/1490660"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Shows</a
-        >
-        <a
-          href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Press</a
-        >
-      </div>
-
-      <img
-        class="image"
-        src="/img/nourharkati-guembri.jpg"
-        alt="nour harkati, guembri, Gnawa music, north african, artist, composer, New York, Tunisia, Moulena, sound designer, guembri, sintir"
-      />
-      <p>
-        Nour Harkati is a Tunisian, New York–based musician, singer-songwriter,
-        and Guembri player, blending ancestral North African traditions with
-        contemporary urban sound. Rooted in Gnawa rhythms and shaped by eight
-        years in New York, his music is meditative, kinetic, and deeply groovy.
-      </p>
-
-      <p>
-        The latest album, Moulena (December 2024), fuses the Guembri with NYC
-        urban groove, electronics, and modern songcraft, exploring migration,
-        memory, and belonging. It premiered on KEXP and was celebrated at Public
-        Records in New York.
-      </p>
-
-      <p>
-        Harkati has toured the U.S, performed at GlobalFEST, Celebrate Brooklyn,
-        and Habibi Festival, and in January 2026 begins a one-month residency at
-        Pioneer Works. Across continents, he continues to honor lineage while
-        pushing it forward.
-      </p>
-
-      <a
-        href="https://nourharkati.bandcamp.com/album/moulena"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="image"
-          src="/img/Nourharkati-cassette-moulena.jpg"
-          alt="nour harkati, guembri, Gnawa music, north african, artist, composer, New York, Tunisia, Moulena, sound designer, guembri, sintir"
-        />
-      </a>
-
-      <iframe
-        style="width: 350px; height: 406px"
-        src="https://bandcamp.com/EmbeddedPlayer/album=1015753454/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/"
-        seamless
-      ></iframe>
+    <div class="site-title">
+      <a href="https://nourharkati.net/">NOUR&nbsp;HARKATI</a>
     </div>
-    <!-- <p>booking inquiries should be directed to Jonathan Mattson.</p> -->
 
-    <div class="contact">
-      <a
-        href="https://www.instagram.com/nour.harkati/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Instagram</a
-      >
-      <a
-        href="mailto:nour.harkati@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Booking</a
-      >
+    <div class="wrapper">
+      <section class="left">
+        <div class="hero">
+          <span>TOUR</span>
+          <span>DATES</span>
+          <span>COMING SOON</span>
+        </div>
+
+        <div class="bio">
+          <p>
+            Nour Harkati is a Tunisian, New York–based musician,
+            singer-songwriter, and Guembri player, blending ancestral North
+            African traditions with contemporary urban sound. Rooted in Gnawa
+            rhythms and shaped by eight years in New York, his music is
+            meditative, kinetic, and deeply groovy.
+          </p>
+
+          <p>
+            The latest album, Moulena (December 2024), fuses the Guembri with
+            NYC urban groove, electronics, and modern songcraft, exploring
+            migration, memory, and belonging. It premiered on KEXP and was
+            celebrated at Public Records in New York.
+          </p>
+
+          <p>
+            Harkati has toured the U.S, performed at GlobalFEST, Celebrate
+            Brooklyn, and Habibi Festival, and in January 2026 begins a
+            one-month residency at Pioneer Works. Across continents, he
+            continues to honor lineage while pushing it forward.
+          </p>
+        </div>
+
+        <div class="social">
+          <a
+            href="https://www.instagram.com/nour.harkati/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Instagram</a
+          >
+          <a
+            href="https://nourharkati.bandcamp.com/album/moulena"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Bandcamp</a
+          >
+          <a
+            href="https://www.bandsintown.com/a/1490660"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Bandsintown</a
+          >
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="topbar">
+          <nav class="menu">
+            <a
+              href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Music</a
+            >
+            <a
+              href="https://www.youtube.com/watch?v=o9s17K4tXbk"
+              target="_blank"
+              rel="noopener noreferrer"
+              >KEXP</a
+            >
+            <a
+              href="https://www.bandsintown.com/a/1490660"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Shows</a
+            >
+            <a
+              href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Press</a
+            >
+          </nav>
+        </div>
+
+        <div class="gallery">
+          <a
+            href="https://nourharkati.bandcamp.com/album/moulena"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Nour Harkati"
+          >
+            <img
+              class="gallery-img"
+              src="img/Nourharkati-Moulena.jpg"
+              alt="nour harkati, desert blues, ngoni, xalam, guembri, Gnawa music, north african, artist, composer, New York, Tunisia, Moulena, sound designer, guembri, sintir"
+            />
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      <div>
+        <div class="booking">[Booking]</div>
+        <a href="mailto:dgaar@atomicmusicgroup.com">David Gaar</a>
+      </div>
     </div>
   </body>
 </html>

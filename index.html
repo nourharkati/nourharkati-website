@@ -2,34 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nour Harkati</title>
-
-    <link
-      rel="preload"
-      href="fonts/cygnito-mono-regular.otf"
-      as="font"
-      type="font/otf"
-      crossorigin
-    />
 
     <style>
       @font-face {
         font-family: "Cygnito Mono";
         src: url("fonts/cygnito-mono-regular.otf") format("opentype");
-        font-display: swap;
       }
 
       :root {
         --mobile-gutter: 20px;
-        --safe-left: env(safe-area-inset-left);
-        --safe-right: env(safe-area-inset-right);
-        --blue: #1137c7;
-        --orange: #f6a434;
-        --offwhite: #e9f0ff;
       }
 
       * {
@@ -40,14 +23,12 @@
 
       body {
         font-family: "Cygnito Mono", monospace;
-        color: var(--offwhite);
+        background: #1137c7;
+        color: #e9f0ff;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        background-image: url("img/background.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+
         cursor:
           url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23FF9C00'/></svg>")
             10 10,
@@ -55,8 +36,6 @@
       }
 
       a {
-        text-decoration: none;
-        color: inherit;
         cursor:
           url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%231137c7'/></svg>")
             10 10,
@@ -64,94 +43,59 @@
       }
 
       ::selection {
-        background: var(--orange);
-        color: var(--blue);
+        background: #ff9c00;
+        color: #1137c7;
       }
 
-      .bracket-hover {
-        position: relative;
-      }
-
-      .bracket-hover::before,
-      .bracket-hover::after {
-        opacity: 0;
-        transition: opacity 0.15s ease;
-      }
-
-      .bracket-hover::before {
-        content: "[ ";
-      }
-
-      .bracket-hover::after {
-        content: " ]";
-      }
-
-      .bracket-hover:hover::before,
-      .bracket-hover:hover::after {
-        opacity: 1;
-      }
+      /* ================= SITE TITLE ================= */
 
       .site-title {
-        position: fixed;
+        position: sticky;
         top: 0;
-        width: 100%;
-        z-index: 40;
+        z-index: 20;
         padding: 18px 48px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: transform 0.35s ease;
-      }
-
-      .site-title.hidden {
-        transform: translateY(-100%);
+        background: #1137c7;
       }
 
       .site-title a {
-        background: var(--orange);
-        color: var(--blue);
-        padding: 4px 8px;
-        letter-spacing: 0.25em;
         font-size: 18px;
-      }
-
-      .burger {
-        display: none;
-        background: var(--orange);
-        color: var(--blue);
+        letter-spacing: 0.25em;
+        background: #ff9c00;
+        color: #1137c7;
         padding: 4px 8px;
-        font-size: 14px;
-        border: none;
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
       }
 
-      .mobile-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 48px;
-        background: var(--orange);
-        padding: 16px;
-        flex-direction: column;
-        gap: 14px;
+      .site-title a::before,
+      .site-title a::after {
+        opacity: 0;
       }
 
-      .mobile-menu.open {
-        display: flex;
+      .site-title a::before {
+        content: "[ ";
+      }
+      .site-title a::after {
+        content: " ]";
       }
 
-      .mobile-menu a {
-        color: var(--blue);
-        font-size: 13px;
-        letter-spacing: 0.12em;
+      .site-title a:hover::before,
+      .site-title a:hover::after {
+        opacity: 1;
       }
+
+      /* ================= MAIN GRID ================= */
 
       .wrapper {
         flex: 1;
         display: grid;
         grid-template-columns: minmax(320px, 1.1fr) minmax(300px, 0.9fr);
+        padding: 60px 48px 48px;
         gap: 40px;
-        padding: 120px 48px 48px;
       }
+
+      /* ================= LEFT ================= */
 
       .left {
         display: flex;
@@ -159,35 +103,64 @@
         justify-content: center;
       }
 
+      .hero {
+        font-size: clamp(22px, 3.4vw, 40px);
+        line-height: 1.15;
+        letter-spacing: 0.08em;
+      }
+
       .hero span {
         display: block;
-        font-size: clamp(22px, 3.4vw, 40px);
-        letter-spacing: 0.08em;
       }
 
       .bio {
         margin-top: 36px;
         max-width: 520px;
+        width: 100%;
         font-size: 13px;
         line-height: 1.65;
-        display: flex;
-        flex-direction: column;
-        gap: 24px; /* spacing between bio paragraphs */
+        letter-spacing: 0.03em;
+        color: rgba(233, 240, 255, 0.65);
+      }
+
+      .bio p {
+        margin-bottom: 16px;
       }
 
       .social {
         margin-top: 20px;
         display: flex;
         gap: 24px;
-        flex-wrap: wrap;
         font-size: 12px;
+        letter-spacing: 0.12em;
       }
 
       .social a {
-        background: var(--orange);
-        color: var(--blue);
+        background: #ff9c00;
+        color: #1137c7;
         padding: 2px 6px;
+        text-decoration: none;
+        position: relative;
       }
+
+      .social a::before,
+      .social a::after {
+        opacity: 0;
+      }
+
+      .social a::before {
+        content: "[ ";
+      }
+      .social a::after {
+        content: " ]";
+      }
+
+      .social a:hover::before,
+      .social a:hover::after {
+        opacity: 1;
+      }
+
+      /* ================= RIGHT ================= */
 
       .right {
         display: flex;
@@ -195,26 +168,46 @@
         align-items: center;
       }
 
+      .topbar {
+        padding-bottom: 20px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+      }
+
       .menu {
         display: flex;
-        gap: clamp(16px, 3vw, 36px);
-        margin-bottom: 36px;
+        gap: 36px;
       }
 
       .menu a {
-        background: var(--orange);
-        color: var(--blue);
+        background: #ff9c00;
+        color: #1137c7;
+        text-decoration: none;
         padding: 2px 6px;
-        font-size: clamp(12px, 1.2vw, 13px);
+        white-space: nowrap;
+        position: relative;
+      }
+
+      .menu a::before,
+      .menu a::after {
+        opacity: 0;
+      }
+
+      .menu a::before {
+        content: "[ ";
+      }
+      .menu a::after {
+        content: " ]";
+      }
+
+      .menu a:hover::before,
+      .menu a:hover::after {
+        opacity: 1;
       }
 
       .gallery {
         width: 88%;
-        aspect-ratio: 1 / 1;
-      }
-
-      .gallery-link {
-        display: block;
+        aspect-ratio: 3 / 4;
         overflow: hidden;
       }
 
@@ -222,113 +215,145 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: none; /* no zoom */
+        display: block;
       }
 
+      /* ================= FOOTER ================= */
+
       .footer {
-        padding: 24px 48px;
+        padding: 20px 48px;
         font-size: 13px;
         letter-spacing: 0.12em;
+        display: flex;
+        gap: 48px;
+        border-top: 1px dotted rgba(233, 240, 255, 0.2);
       }
 
       .booking {
         color: rgba(233, 240, 255, 0.65);
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
 
       .footer a {
-        background: var(--orange);
-        color: var(--blue);
+        background: #ff9c00;
+        color: #1137c7;
         padding: 4px 10px;
+        text-decoration: none;
+        position: relative;
       }
 
-      @media (max-width: 820px) {
-        .menu {
-          display: none;
+      .footer a::before,
+      .footer a::after {
+        opacity: 0;
+      }
+
+      .footer a::before {
+        content: "[ ";
+      }
+      .footer a::after {
+        content: " ]";
+      }
+
+      .footer a:hover::before,
+      .footer a:hover::after {
+        opacity: 1;
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 900px) {
+        body {
+          align-items: center;
         }
 
-        .burger {
-          display: inline-block;
+        .site-title,
+        .left,
+        .footer {
+          padding-left: var(--mobile-gutter);
+          padding-right: var(--mobile-gutter);
+        }
+
+        .site-title {
+          text-align: left;
+          width: 100%;
+          max-width: 520px;
+          margin: 0 auto;
         }
 
         .wrapper {
-          display: flex;
-          flex-direction: column;
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "gallery"
+            "menu"
+            "content";
+          padding: 16px 0 36px;
           max-width: 520px;
-          margin: 0 auto;
-          padding: 120px calc(var(--mobile-gutter) + var(--safe-right)) 40px
-            calc(var(--mobile-gutter) + var(--safe-left));
-        }
-
-        .gallery {
-          max-width: 350px; /* album photo width */
           width: 100%;
-          margin: 32px auto;
+          gap: 26px;
         }
 
         .right {
-          order: 1;
+          grid-area: gallery;
+          width: 100%;
+        }
+
+        .topbar {
+          grid-area: menu;
+          display: flex;
+          justify-content: center;
+          padding: 8px 0 12px;
+        }
+
+        .menu {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 18px;
+        }
+
+        .gallery {
+          width: 100%;
+          max-width: 420px;
+          margin: 0 auto;
         }
 
         .left {
-          order: 2;
+          grid-area: content;
+          align-items: flex-start;
+          text-align: left;
         }
 
-        /* Slightly left-align Booking and David Gaar */
+        .bio {
+          margin-top: 28px;
+        }
+
+        .social {
+          margin-top: 16px;
+        }
+
         .footer {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 24px calc(var(--mobile-gutter) + var(--safe-left));
+          justify-content: flex-start;
+          text-align: left;
+          width: 100%;
+          max-width: 520px;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          font-size: 24px;
+          letter-spacing: 0.06em;
         }
       }
     </style>
   </head>
 
   <body>
-    <header class="site-title" id="siteTitle">
-      <a
-        href="https://nourharkati.net/"
-        class="bracket-hover"
-        
-        >NOUR&nbsp;HARKATI</a
-      >
+    <div class="site-title">
+      <a href="https://nourharkati.net/">NOUR&nbsp;HARKATI</a>
+    </div>
 
-      <button class="burger bracket-hover" id="burgerBtn">=</button>
-
-      <nav class="mobile-menu" id="mobileMenu">
-        <a
-          class="bracket-hover"
-          href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Music</a
-        >
-        <a
-          class="bracket-hover"
-          href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-          target="_blank"
-          rel="noopener noreferrer"
-          >KEXP</a
-        >
-        <a
-          class="bracket-hover"
-          href="https://www.bandsintown.com/a/1490660"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Shows</a
-        >
-        <a
-          class="bracket-hover"
-          href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Press</a
-        >
-      </nav>
-    </header>
-
-    <main class="wrapper">
+    <div class="wrapper">
       <section class="left">
         <div class="hero">
           <span>TOUR</span>
@@ -338,124 +363,115 @@
 
         <div class="bio">
           <p>
-            Nour Harkati is a Tunisian, New York–based musician,
-            singer-songwriter, and Guembri player, blending ancestral North
-            African traditions with contemporary urban sound. Rooted in Gnawa
-            rhythms and shaped by eight years in New York, his music is
-            meditative, kinetic, and deeply groovy.
-          </p>
+        Nour Harkati is a Tunisian, New York–based musician, singer-songwriter,
+        and Guembri player, blending ancestral North African traditions with
+        contemporary urban sound. Rooted in Gnawa rhythms and shaped by eight
+        years in New York, his music is meditative, kinetic, and deeply groovy.
+      </p>
 
-          <p>
-            The latest album, Moulena (December 2024), fuses the Guembri with
-            NYC urban groove, electronics, and modern songcraft, exploring
-            migration, memory, and belonging. It premiered on KEXP and was
-            celebrated at Public Records in New York.
-          </p>
+      <p>
+        The latest album, Moulena (December 2024), fuses the Guembri with NYC
+        urban groove, electronics, and modern songcraft, exploring migration,
+        memory, and belonging. It premiered on KEXP and was celebrated at Public
+        Records in New York.
+      </p>
 
-          <p>
-            Harkati has toured the U.S, performed at GlobalFEST, Celebrate
-            Brooklyn, and Habibi Festival, and in January 2026 begins a
-            one-month residency at Pioneer Works. Across continents, he
-            continues to honor lineage while pushing it forward.
-          </p>
+      <p>
+        Harkati has toured the U.S, performed at GlobalFEST, Celebrate Brooklyn,
+        and Habibi Festival, and in January 2026 begins a one-month residency at
+        Pioneer Works. Across continents, he continues to honor lineage while
+        pushing it forward.
+      </p>
         </div>
 
         <div class="social">
-          <a
-            class="bracket-hover"
-            href="https://www.instagram.com/nour.harkati/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Instagram</a
-          >
-          <a
-            class="bracket-hover"
-            href="mailto:dgaar@atomicmusicgroup.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Booking</a
-          >
-          
+          <a href="https://www.instagram.com/nour.harkati/" target="_blank"
+        rel="noopener noreferrer">Instagram</a>
+          <a href="https://nourharkati.bandcamp.com/album/moulena" target="_blank"
+        rel="noopener noreferrer">Bandcamp</a>
+          <a href="https://www.bandsintown.com/a/1490660" target="_blank"
+        rel="noopener noreferrer">Bandsintown</a>
         </div>
       </section>
 
       <section class="right">
-        <nav class="menu">
-          <a
-            class="bracket-hover"
-            href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Music</a
-          >
-          <a
-            class="bracket-hover"
-            href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-            target="_blank"
-            rel="noopener noreferrer"
-            >KEXP</a
-          >
-          <a
-            class="bracket-hover"
-            href="https://www.bandsintown.com/a/1490660"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Shows</a
-          >
-          <a
-            class="bracket-hover"
-            href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Press</a
-          >
-        </nav>
+        <div class="topbar">
+          <nav class="menu">
+            <a href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ?si=owTcmDhyTY6swZhZ63RMdw" target="_blank"
+        rel="noopener noreferrer">Music</a>
+            <a href="https://www.youtube.com/watch?v=o9s17K4tXbk" target="_blank"
+        rel="noopener noreferrer">KEXP</a>
+            <a href="https://www.bandsintown.com/a/1490660" target="_blank"
+        rel="noopener noreferrer">Shows</a>
+            <a href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"target="_blank"
+        rel="noopener noreferrer">Press</a>
+          </nav>
+        </div>
 
         <div class="gallery">
-          <a
-            class="gallery-link"
-            href="https://nourharkati.bandcamp.com/album/moulena"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              class="gallery-img"
-              src="img/nourharkati-album-moulena.jpg"
-              alt="Nour Harkati – Moulena album"
-            />
-          </a>
+          <img class="gallery-img" alt="Nour Harkati gallery" />
         </div>
       </section>
-    </main>
+    </div>
 
-    <!-- <footer class="footer">
-      <div class="booking">[Booking]</div>
-      <a
-        class="bracket-hover"
-        href="mailto:dgaar@atomicmusicgroup.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >David Gaar</a
-      >
-    </footer> -->
+    <div class="footer">
+      <div>
+        <div class="booking">[Booking]</div>
+        <a href="mailto:dgaar@atomicmusicgroup.com">David Gaar</a>
+      </div>
+    </div>
 
     <script>
-      let lastScroll = 0;
-      const header = document.getElementById("siteTitle");
+      const images = [
+        "backstage.jpg",
+        "delta.jpg",
+        "dudes.jpg",
+        "guem.jpg",
+        "guembri.jpg",
+        "joe.jpg",
+        "jos.jpg",
+        "kexp-01.jpg",
+        "josh-02.jpg",
+        "josh-mehdi.jpg",
+        "josh.jpg",
+        "joshh.jpg",
+        "kerkaba.jpg",
+        "kexp-02.jpg",
+        "kexp-03.jpg",
+        "tour-01.jpg",
+        "kexp-04.jpg",
+        "khalil.jpg",
+        "la.jpg",
+        "leo-josh.jpg",
+        "leo.jpg",
+        "mahdouch.jpg",
+        "me.jpg",
+        "tour-02.jpg",
+        "mehdi-01.jpg",
+        "snow.jpg",
+        "moulena-tape.jpg",
+        "stand.jpg",
+        "moulena.jpg",
+        "sultan.jpg",
+        "plane-01.jpg",
+        "thecrew.jpg",
+        "plane-02.jpg",
+        "tour-03.jpg",
+        "plane.jpg",
+        "townhouse.jpg",
+        "sign.jpg",
+        "venice.jpg",
+      ].map((img) => `img/${img}`);
 
-      window.addEventListener("scroll", () => {
-        const y = window.scrollY;
-        if (y > lastScroll && y > 80) header.classList.add("hidden");
-        else header.classList.remove("hidden");
-        lastScroll = y;
-      });
+      images.sort(() => Math.random() - 0.5);
+      const imgEl = document.querySelector(".gallery-img");
+      let index = 0;
+      imgEl.src = images[index];
 
-      const burger = document.getElementById("burgerBtn");
-      const menu = document.getElementById("mobileMenu");
-
-      burger.addEventListener("click", () => {
-        menu.classList.toggle("open");
-      });
+      setInterval(() => {
+        index = (index + 1) % images.length;
+        imgEl.src = images[index];
+      }, 500);
     </script>
   </body>
 </html>

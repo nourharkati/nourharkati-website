@@ -2,35 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nour Harkati</title>
 
-    <link
-      rel="preload"
-      href="fonts/cygnito-mono-regular.otf"
-      as="font"
-      type="font/otf"
-      crossorigin
-    />
-
     <style>
+      /* ===== FONTS ===== */
+
+      @font-face {
+        font-family: "Sequel";
+        src: url("fonts/Sequel Sans Black Body.ttf") format("truetype");
+        font-display: swap;
+      }
+
       @font-face {
         font-family: "Cygnito Mono";
         src: url("fonts/cygnito-mono-regular.otf") format("opentype");
         font-display: swap;
       }
 
-      :root {
-        --mobile-gutter: 20px;
-        --safe-left: env(safe-area-inset-left);
-        --safe-right: env(safe-area-inset-right);
-        --blue: #1137c7;
-        --orange: #f6a434;
-        --offwhite: #e9f0ff;
-      }
+      /* ===== RESET ===== */
 
       * {
         margin: 0;
@@ -40,17 +30,14 @@
 
       body {
         font-family: "Cygnito Mono", monospace;
-        color: var(--offwhite);
+        background: #f6a434;
+        color: #323232;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        background-color: #1137c7;
-        /* background-image: url("img/background.jpg"); */
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+
         cursor:
-          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23FF9C00'/></svg>")
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23323232'/></svg>")
             10 10,
           auto;
       }
@@ -58,388 +45,440 @@
       a {
         text-decoration: none;
         color: inherit;
+        transition:
+          color 0.25s ease,
+          background 0.25s ease;
         cursor:
-          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%231137c7'/></svg>")
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='6' fill='%23DD4939'/></svg>")
             10 10,
           pointer;
       }
 
       ::selection {
-        background: var(--orange);
-        color: var(--blue);
+        background: #323232;
+        color: #ffe0c8;
       }
 
-      .bracket-hover {
-        position: relative;
+      ::-moz-selection {
+        background: #323232;
+        color: #ffe0c8;
       }
 
-      .bracket-hover::before,
-      .bracket-hover::after {
-        opacity: 0;
-        transition: opacity 0.15s ease;
+      /* ===== HEADER ===== */
+
+      header {
+        padding: 24px 48px;
       }
 
-      .bracket-hover::before {
-        content: "[ ";
+      .site-name {
+        font-family: "Sequel";
+        letter-spacing: 0.01em;
+        font-size: 20px;
+        white-space: nowrap;
+        background: #323232;
+        color: #fbe8da;
+        padding: 6px 10px;
+        display: inline-block;
       }
 
-      .bracket-hover::after {
-        content: " ]";
+      .site-name:hover {
+        color: #323232;
+        background-color: #ffe0c8;
       }
 
-      .bracket-hover:hover::before,
-      .bracket-hover:hover::after {
-        opacity: 1;
-      }
-
-      .site-title {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 40;
-        padding: 18px 48px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: transform 0.35s ease;
-      }
-
-      .site-title.hidden {
-        transform: translateY(-100%);
-      }
-
-      .site-title a {
-        background: var(--orange);
-        color: var(--blue);
-        padding: 4px 8px;
-        letter-spacing: 0.25em;
-        font-size: 18px;
-      }
-
-      .burger {
-        display: none;
-        background: var(--orange);
-        color: var(--blue);
-        padding: 4px 8px;
-        font-size: 14px;
-        border: none;
-      }
-
-      .mobile-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 48px;
-        background: var(--orange);
-        padding: 16px;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .mobile-menu.open {
-        display: flex;
-      }
-
-      .mobile-menu a {
-        color: var(--blue);
-        font-size: 13px;
-        letter-spacing: 0.12em;
-      }
+      /* ===== LAYOUT ===== */
 
       .wrapper {
         flex: 1;
         display: grid;
-        grid-template-columns: minmax(320px, 1.1fr) minmax(300px, 0.9fr);
-        gap: 40px;
-        padding: 120px 48px 48px;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 60px;
+        padding: 40px 48px 80px;
       }
+
+      /* ===== LEFT SIDE ===== */
 
       .left {
         display: flex;
         flex-direction: column;
-        justify-content: center;
       }
 
-      .hero span {
-        display: block;
-        font-size: clamp(22px, 3.4vw, 40px);
-        letter-spacing: 0.08em;
+      /* HERO */
+
+      .hero {
+        font-family: "Sequel";
+        font-size: 44px;
+        letter-spacing: 0.01em;
+        line-height: 1.1;
+        margin-top: 50px;
       }
 
-      .bio {
-        margin-top: 36px;
-        max-width: 520px;
-        font-size: 13px;
-        line-height: 1.65;
+      .hero .tour {
+        color: #fbe8da;
+        background-color: #323232;
+        padding: 6px 10px;
+        /* max-width: 400px; */
+      }
+
+      .hero .coming {
+        color: #323232;
+        background-color: #fbe8da;
+        padding: 6px 10px;
+        /* max-width: 400px; */
+      }
+
+      .hero a:hover .tour {
+        background-color: #ffe0c8;
+        color: #323232;
+      }
+      .hero a:hover .coming {
+        background-color: #323232;
+        color: #fbe8da;
+      }
+
+      /* TOUR LIST */
+
+      .tour-list {
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 28px;
       }
 
-      .social {
-        margin-top: 20px;
+      .tour-item {
         display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-        font-size: 12px;
+        justify-content: space-between;
+        border-bottom: 1px solid #323232;
+        align-items: flex-start;
       }
 
-      .social a {
-        background: var(--orange);
-        color: var(--blue);
-        padding: 2px 6px;
+      .tour-info {
+        display: flex;
+        flex-direction: column;
       }
+
+      .city {
+        font-family: "Sequel";
+        font-size: 16px;
+        letter-spacing: 0.05em;
+        background-color: #323232;
+        color: #ffe0c8;
+      }
+
+      .venue {
+        font-size: 11px;
+        opacity: 0.8;
+        margin-top: 4px;
+      }
+
+      .date {
+        font-size: 12px;
+        margin-top: 4px;
+        opacity: 0.9;
+      }
+
+      .ticket {
+        margin-left: 20px;
+        background: #323232;
+        color: #ffe0c8;
+        padding: 4px 10px;
+        font-family: "sequel";
+        font-size: 12px;
+        white-space: nowrap;
+        align-self: flex-start;
+        transition: all 0.1s;
+      }
+
+      .ticket:hover {
+        background: #ffe0c8;
+        color: #323232ff;
+      }
+
+      /* ===== RIGHT SIDE ===== */
 
       .right {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
       }
+
+      /* MENU */
 
       .menu {
         display: flex;
-        gap: clamp(16px, 3vw, 36px);
-        margin-bottom: 36px;
+        gap: 24px;
+        margin-bottom: 30px;
+        font-family: "Sequel";
       }
 
       .menu a {
-        background: var(--orange);
-        color: var(--blue);
-        padding: 2px 6px;
-        font-size: clamp(12px, 1.2vw, 13px);
+        font-size: 14px;
+        background: #323232;
+        color: #ffe0c8;
+        padding: 4px 8px;
       }
+
+      .menu a:hover {
+        background: #ffe0c8;
+        color: #323232;
+      }
+
+      /* IMAGE */
 
       .gallery {
-        width: 88%;
-        aspect-ratio: 1 / 1;
+        width: 100%;
+        aspect-ratio: 1/1;
+        max-width: 600px;
       }
 
-      .gallery-link {
-        display: block;
-        overflow: hidden;
-      }
-
-      .gallery-img {
+      .gallery img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: none;
+        display: block;
       }
+
+      /* BIO */
+
+      .bio {
+        margin-top: 30px;
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 600px;
+        text-align: justify;
+      }
+
+      .bio p + p {
+        margin-top: 16px;
+      }
+
+      /* FOOTER */
 
       .footer {
-        padding: 24px 48px;
-        font-size: 13px;
-        letter-spacing: 0.12em;
-      }
-
-      .booking {
-        color: rgba(233, 240, 255, 0.65);
-        margin-bottom: 6px;
+        display: flex;
+        justify-content: flex-start;
+        gap: 24px;
+        padding: 30px 48px;
       }
 
       .footer a {
-        background: var(--orange);
-        color: var(--blue);
-        padding: 4px 10px;
+        font-family: "Sequel";
+        font-size: 14px;
+        background: #323232;
+        color: #ffe0c8;
+        padding: 4px 8px;
+        white-space: nowrap;
       }
 
-      @media (max-width: 820px) {
-        .menu {
-          display: none;
-        }
+      .footer a:hover {
+        background: #ffe0c8;
+        color: #323232;
+      }
 
-        .burger {
-          display: inline-block;
-        }
+      /* ===== MOBILE ===== */
 
-        /* 🔧 FIX 1: smaller site title on mobile */
-        .site-title a {
-          font-size: 14px;
-          letter-spacing: 0.18em;
-          padding: 3px 6px;
+      /* @media (max-width: 820px) { */
+      @media (max-width: 768px) {
+        header {
+          padding: 24px;
         }
 
         .wrapper {
           display: flex;
           flex-direction: column;
-          max-width: 520px;
-          margin: 0 auto;
-          padding: 120px calc(var(--mobile-gutter) + var(--safe-right)) 40px
-            calc(var(--mobile-gutter) + var(--safe-left));
-        }
-
-        .gallery {
-          max-width: 350px;
-          width: 100%;
-          margin: 32px auto;
+          padding: 20px 24px 40px;
+          gap: 40px;
         }
 
         .right {
           order: 1;
         }
-
         .left {
           order: 2;
         }
 
+        .hero {
+          font-size: 30px;
+        }
+
         .footer {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 24px calc(var(--mobile-gutter) + var(--safe-left));
+          padding: 30px 24px;
+          justify-content: flex-start;
         }
       }
     </style>
   </head>
 
   <body>
-    <header class="site-title" id="siteTitle">
-      <a href="https://nourharkati.net/" class="bracket-hover">
-        NOUR&nbsp;HARKATI
-      </a>
-
-      <button class="burger bracket-hover" id="burgerBtn">=</button>
-
-      <nav class="mobile-menu" id="mobileMenu">
-        <a
-          class="bracket-hover"
-          href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
-          target="_blank"
-          >Music</a
-        >
-        <a
-          class="bracket-hover"
-          href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-          target="_blank"
-          >KEXP</a
-        >
-        <a
-          class="bracket-hover"
-          href="https://www.bandsintown.com/a/1490660"
-          target="_blank"
-          >Shows</a
-        >
-        <a
-          class="bracket-hover"
-          href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
-          target="_blank"
-          >Press</a
-        >
-      </nav>
+    <header>
+      <a class="site-name" href="https://nourharkati.net/">NOUR HARKATI</a>
     </header>
 
     <main class="wrapper">
-      <section class="left">
-        <div class="hero">
-          <span>TOUR</span>
-          <span>DATES</span>
-          <span>COMING SOON</span>
+      <!-- RIGHT (shows first on mobile) -->
+      <section class="right">
+        <nav class="menu">
+          <a href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ?si=owTcmDhyTY6swZhZ63RMdw"
+              target="_blank"
+              rel="noopener noreferrer">MUSIC</a>
+          <a href="https://www.youtube.com/watch?v=o9s17K4tXbk"
+              target="_blank"
+              rel="noopener noreferrer">KEXP</a>
+          <a href="https://www.youtube.com/watch?v=dTssrAQq-jU"
+              target="_blank"
+              rel="noopener noreferrer">LIVE</a>
+          <a href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
+              target="_blank"
+              rel="noopener noreferrer">PRESS</a>
+        </nav>
+
+        <div class="gallery">
+          <img src="img/Nour Harkati - monochrome.png" alt="Nour Harkati" />
         </div>
 
         <div class="bio">
           <p>
-            Nour Harkati is a Tunisian, New York–based musician,
-            singer-songwriter, and Guembri player, blending ancestral North
-            African traditions with contemporary urban sound. Rooted in Gnawa
-            rhythms and shaped by eight years in New York, his music is
-            meditative, kinetic, and deeply groovy.
+            Nour Harkati is a Tunisian, New York–based, desert blues musician,
+            singer-songwriter, forging a powerful bridge between ancestral North
+            African traditions and the raw pulse of contemporary urban sound.
+            Deeply rooted in spiritual Gnawa rhythms and the trance-driven
+            spirit of desert blues, he blends the ancient resonance of the
+            Guembri with gritty NYC drums, electronic textures, and modern
+            songcraft. The result is a sound that is both meditative and
+            electrifying-philosophical in depth, yet irresistibly groove-driven.
           </p>
 
           <p>
-            The latest album, Moulena (December 2024), fuses the Guembri with
-            NYC urban groove, electronics, and modern songcraft, exploring
-            migration, memory, and belonging. It premiered on KEXP and was
-            celebrated at Public Records in New York.
+            His latest album, Moulena (December 11, 2024), premiered worldwide
+            on Live on KEXP and stands as a vibrant homage to his North African
+            roots and a tribute to those who journey far from home. With poetic
+            lyricism and infectious rhythms, Moulena marks a bold new
+            chapter—where the soul of the desert meets the relentless energy of
+            New York City.
           </p>
 
           <p>
-            Harkati has toured the U.S, performed at GlobalFEST, Celebrate
-            Brooklyn, and Habibi Festival, and in January 2026 begins a
-            one-month residency at Pioneer Works. Across continents, he
-            continues to honor lineage while pushing it forward.
+            After eight transformative years living in NYC, Harkati has
+            performed on major international stages including GlobalFEST at
+            Lincoln Center, Celebrate Brooklyn Festival, and Habibi Festival,
+            and will take up a month-long residency at Pioneer Works. Across
+            continents and communities, Nour Harkati continues to redefine
+            desert blues for a global audience—honoring lineage while fearlessly
+            pushing it forward.
           </p>
-        </div>
-
-        <div class="social">
-          <a
-            class="bracket-hover"
-            href="https://www.instagram.com/nour.harkati/"
-            target="_blank"
-            >Instagram</a
-          >
-          <a class="bracket-hover" href="mailto:nour.harkati@gmail.com"
-            >Booking</a
-          >
         </div>
       </section>
 
-      <section class="right">
-        <nav class="menu">
-          <a
-            class="bracket-hover"
-            href="https://open.spotify.com/album/5JgdFRiuL0MYiPsYyUweVQ"
-            target="_blank"
-            >Music</a
-          >
-          <a
-            class="bracket-hover"
-            href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-            target="_blank"
-            >KEXP</a
-          >
-          <a
-            class="bracket-hover"
-            href="https://www.bandsintown.com/a/1490660"
-            target="_blank"
-            >Shows</a
-          >
-          <a
-            class="bracket-hover"
-            href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
-            target="_blank"
-            >Press</a
-          >
-        </nav>
-
-        <div class="gallery">
-          <a
-            class="gallery-link"
-            href="https://nourharkati.bandcamp.com/album/moulena"
-            target="_blank"
-          >
-            <img
-              class="gallery-img"
-              src="img/nourharkati-album-moulena.jpg"
-              alt="Nour Harkati – Moulena album"
-            />
+      <!-- LEFT -->
+      <section class="left">
+        <div class="hero">
+          <a href="https://www.bandsintown.com/a/1490660"
+              target="_blank"
+              rel="noopener noreferrer">
+            <div class="tour">TOUR DATES●</div>
+            <div class="coming">COMING SOON●</div>
           </a>
         </div>
+
+        <!-- <div class="tour-list">
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Minneapolis, MN</div>
+              <div class="venue">The Cedar Cultural Center</div>
+              <div class="date">March 28, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Greenfield, MA</div>
+              <div class="venue">Green River Festival</div>
+              <div class="date">June 21, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Los Angeles, CA</div>
+              <div class="venue">The Regent Theater</div>
+              <div class="date">May 25, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Chicago, IL</div>
+              <div class="venue">Thalia Hall</div>
+              <div class="date">June 2, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Austin, TX</div>
+              <div class="venue">Mohawk</div>
+              <div class="date">June 7, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Portland, OR</div>
+              <div class="venue">Revolution Hall</div>
+              <div class="date">June 12, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Denver, CO</div>
+              <div class="venue">Bluebird Theater</div>
+              <div class="date">June 18, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Atlanta, GA</div>
+              <div class="venue">Terminal West</div>
+              <div class="date">June 24, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">Boston, MA</div>
+              <div class="venue">Paradise Rock Club</div>
+              <div class="date">July 1, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+
+          <div class="tour-item">
+            <div class="tour-info">
+              <div class="city">San Francisco, CA</div>
+              <div class="venue">The Independent</div>
+              <div class="date">July 8, 2026</div>
+            </div>
+            <a href="#" class="ticket">Tickets</a>
+          </div>
+        </div>
       </section>
-    </main>
+    </main> -->
 
-    <!-- <footer class="footer">
-      <div class="booking">[Booking]</div>
-      <a class="bracket-hover" href="mailto:dgaar@atomicmusicgroup.com">David Gaar</a>
-    </footer> -->
-
-    <script>
-      /* 🔧 FIX 2: header hides on scroll down, reappears on scroll up */
-      let lastScroll = 0;
-      const header = document.getElementById("siteTitle");
-
-      window.addEventListener("scroll", () => {
-        const y = window.scrollY;
-        if (y > lastScroll && y > 80) header.classList.add("hidden");
-        else header.classList.remove("hidden");
-        lastScroll = y;
-      });
-
-      const burger = document.getElementById("burgerBtn");
-      const menu = document.getElementById("mobileMenu");
-
-      burger.addEventListener("click", () => {
-        menu.classList.toggle("open");
-      });
-    </script>
+    <footer class="footer">
+      <a href="https://www.instagram.com/nour.harkati/"
+            target="_blank"
+            rel="noopener noreferrer">INSTAGRAM</a>
+      <a href="mailto:dgaar@atomicmusicgroup.com">BOOKING</a>
+    </footer>
   </body>
 </html>

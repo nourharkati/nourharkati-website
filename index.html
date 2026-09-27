@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <title>Nour Harkati</title>
     <link rel="icon" type="image/png" href="icon.png" />
 
@@ -176,7 +179,7 @@
         background: transparent;
         color: #ffffff;
         font-family: "CygnitoMono", monospace;
-        font-size: 0.75rem;
+        font-size: 0.75rem; /* Desktop size */
         outline: none;
         text-align: center;
         transition: border-bottom-color 0.3s ease;
@@ -201,6 +204,7 @@
         text-transform: lowercase;
         transition: all 0.3s ease;
         min-width: 100px;
+        margin-top: 5px;
       }
 
       .newsletter-btn:hover:not(:disabled) {
@@ -318,6 +322,11 @@
         .nav-link {
           font-size: 0.75rem;
         }
+
+        /* FIX: Prevents iOS Safari from auto-zooming on input focus */
+        .newsletter-input {
+          font-size: 16px;
+        }
       }
 
       /* Very small screens */
@@ -344,7 +353,11 @@
     <div class="custom-cursor" id="customCursor"></div>
 
     <div class="container">
-      <a href="https://nourharkati.net/" class="logo-link clickable" aria-label="Home">
+      <a
+        href="https://nourharkati.net/"
+        class="logo-link clickable"
+        aria-label="Home"
+      >
         <img
           src="img/logo.png"
           alt="Nour Harkati"
@@ -391,49 +404,91 @@
         </div>
       </div>
 
-      <!-- NEWSLETTER FORM (Formsubmit) -->
+      <!-- NEWSLETTER FORM -->
       <form
         class="newsletter-form"
         id="newsletterForm"
         action="https://formsubmit.co/nour.harkati@gmail.com"
         method="POST"
       >
-        <!-- Anti-spam honeypot (hidden from humans, catches bots) -->
+        <!-- Anti-spam honeypot -->
         <input type="text" name="_honey" style="display: none" />
-        <!-- Disable captcha for a clean, seamless experience -->
+        <!-- Disable captcha -->
         <input type="hidden" name="_captcha" value="false" />
-        <!-- Custom email subject so you know exactly what this is -->
+        <!-- Custom email subject -->
         <input
           type="hidden"
           name="_subject"
           value="New Newsletter Subscriber!"
         />
 
+        <!-- NEW: Name Input (Anti-Autofill) -->
+        <input
+          type="text"
+          name="name"
+          placeholder="name"
+          class="newsletter-input clickable"
+          required
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          data-lpignore="true"
+        />
+
+        <!-- Email Input (Anti-Autofill) -->
         <input
           type="email"
           name="email"
           placeholder="email"
           class="newsletter-input clickable"
           required
-          autocomplete="email"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          data-lpignore="true"
         />
+
         <button type="submit" class="newsletter-btn clickable" id="submitBtn">
           subscribe
         </button>
       </form>
 
       <div class="links-container">
-        <a href="https://nourharkati.bandcamp.com/" target="_blank"
-            rel="noopener noreferrer" class="nav-link clickable">music</a>
-        <a href="https://bnds.us/ns320u" target="_blank"
-            rel="noopener noreferrer"  class="nav-link clickable">shows</a>
-        <a href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
-            target="_blank"
-            rel="noopener noreferrer" class="nav-link clickable">press</a>
-            <a href="https://nourharkati.bandcamp.com/" target="_blank"
-            rel="noopener noreferrer" class="nav-link clickable">social</a>
-        <a href="mailto:dgaar@atomicmusicgroup.com" target="_blank"
-            rel="noopener noreferrer" class="nav-link clickable"
+        <a
+          href="https://nourharkati.bandcamp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >music</a
+        >
+        <a
+          href="https://bnds.us/ns320u"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >shows</a
+        >
+        <a
+          href="https://scenenoise.com/New-Music/Nomadic-Spirit-Meets-Tradition-in-Nour-Harakati-s-Moulena"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >press</a
+        >
+        <a
+          href="https://nourharkati.bandcamp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >social</a
+        >
+        <a
+          href="mailto:dgaar@atomicmusicgroup.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
           >booking</a
         >
       </div>
@@ -539,9 +594,12 @@
         });
       });
 
-      // ===== NEWSLETTER FORM SUBMISSION (AJAX) =====
+            // ===== NEWSLETTER FORM SUBMISSION (Google Sheet) =====
       const form = document.getElementById("newsletterForm");
       const submitBtn = document.getElementById("submitBtn");
+      
+      // 👇 PASTE YOUR CLEAN GOOGLE APPS SCRIPT URL BETWEEN THE QUOTES BELOW 👇
+      const scriptURL = 'AKfycbz9|fc8QcMujHTv3qy||FZ209vS16IcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF'; 
 
       form.addEventListener("submit", function (e) {
         e.preventDefault(); // Stop page from reloading
@@ -552,27 +610,17 @@
 
         const formData = new FormData(form);
 
-        fetch(form.action, {
+        fetch(scriptURL, {
           method: "POST",
           body: formData,
-          headers: {
-            Accept: "application/json", // Tells Formsubmit to reply with JSON, not a redirect
-          },
+          mode: 'no-cors' // Prevents browser security blocks
         })
-          .then((response) => {
-            if (response.ok) {
-              // Success: Replace form with a clean thank you message
-              form.innerHTML =
-                '<p class="success-message">thank you for subscribing.</p>';
-            } else {
-              // Error: Reset button
-              submitBtn.innerText = originalText;
-              submitBtn.disabled = false;
-              alert("oops, something went wrong. please try again.");
-            }
+          .then(() => {
+            // Success: Replace form with a clean thank you message
+            form.innerHTML = '<p class="success-message">thank you for subscribing.</p>';
           })
           .catch((error) => {
-            console.error("Formsubmit error:", error);
+            console.error("Error:", error);
             submitBtn.innerText = originalText;
             submitBtn.disabled = false;
             alert("oops, something went wrong. please try again.");

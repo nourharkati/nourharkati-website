@@ -235,7 +235,7 @@
         }
       }
 
-      /* Links / Menu */
+      /* Links */
       .links-container {
         display: flex;
         flex-wrap: wrap;
@@ -353,7 +353,6 @@
     <div class="custom-cursor" id="customCursor"></div>
 
     <div class="container">
-      <!-- 1. LOGO -->
       <a
         href="https://nourharkati.net/"
         class="logo-link clickable"
@@ -373,7 +372,89 @@
         <div class="image-fallback" style="display: none">NOUR HARKATI</div>
       </a>
 
-      <!-- 2. MENU (Moved right above the hello.gif) -->
+      <img
+        src="img/hello.gif"
+        alt="Animation"
+        class="hello-gif loading"
+        id="helloGif"
+        onload="this.classList.add('loaded')"
+        onerror="
+          this.style.display = 'none';
+          this.nextElementSibling.style.display = 'flex';
+        "
+      />
+      <div class="image-fallback" style="display: none">[ animation ]</div>
+
+      <div class="countdown">
+        <div class="countdown-item">
+          <span id="days">00</span>
+          <small>days</small>
+        </div>
+        <div class="countdown-item">
+          <span id="hours">00</span>
+          <small>hrs</small>
+        </div>
+        <div class="countdown-item">
+          <span id="minutes">00</span>
+          <small>min</small>
+        </div>
+        <div class="countdown-item">
+          <span id="seconds">00</span>
+          <small>sec</small>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER FORM -->
+      <form
+        class="newsletter-form"
+        id="newsletterForm"
+        action="https://formsubmit.co/nour.harkati@gmail.com"
+        method="POST"
+      >
+        <!-- Anti-spam honeypot -->
+        <input type="text" name="_honey" style="display: none" />
+        <!-- Disable captcha -->
+        <input type="hidden" name="_captcha" value="false" />
+        <!-- Custom email subject -->
+        <input
+          type="hidden"
+          name="_subject"
+          value="New Newsletter Subscriber!"
+        />
+
+        <!-- NEW: Name Input (Anti-Autofill) -->
+        <input
+          type="text"
+          name="name"
+          placeholder="name"
+          class="newsletter-input clickable"
+          required
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          data-lpignore="true"
+        />
+
+        <!-- Email Input (Anti-Autofill) -->
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          class="newsletter-input clickable"
+          required
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          data-lpignore="true"
+        />
+
+        <button type="submit" class="newsletter-btn clickable" id="submitBtn">
+          subscribe
+        </button>
+      </form>
+
       <div class="links-container">
         <a
           href="https://nourharkati.bandcamp.com/"
@@ -411,78 +492,6 @@
           >booking</a
         >
       </div>
-
-      <!-- 3. HELLO GIF -->
-      <img
-        src="img/hello.gif"
-        alt="Animation"
-        class="hello-gif loading"
-        id="helloGif"
-        onload="this.classList.add('loaded')"
-        onerror="
-          this.style.display = 'none';
-          this.nextElementSibling.style.display = 'flex';
-        "
-      />
-      <div class="image-fallback" style="display: none">[ animation ]</div>
-
-      <!-- 4. COUNTDOWN -->
-      <div class="countdown">
-        <div class="countdown-item">
-          <span id="days">00</span>
-          <small>days</small>
-        </div>
-        <div class="countdown-item">
-          <span id="hours">00</span>
-          <small>hrs</small>
-        </div>
-        <div class="countdown-item">
-          <span id="minutes">00</span>
-          <small>min</small>
-        </div>
-        <div class="countdown-item">
-          <span id="seconds">00</span>
-          <small>sec</small>
-        </div>
-      </div>
-
-      <!-- 5. NEWSLETTER FORM -->
-      <form class="newsletter-form" id="newsletterForm">
-        <!-- Anti-spam honeypot -->
-        <input type="text" name="_honey" style="display: none" />
-        
-        <!-- Name Input (Anti-Autofill) -->
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          class="newsletter-input clickable"
-          required
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          spellcheck="false"
-          data-lpignore="true"
-        />
-
-        <!-- Email Input (Anti-Autofill) -->
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          class="newsletter-input clickable"
-          required
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          spellcheck="false"
-          data-lpignore="true"
-        />
-
-        <button type="submit" class="newsletter-btn clickable" id="submitBtn">
-          subscribe
-        </button>
-      </form>
     </div>
 
     <script>
@@ -588,9 +597,10 @@
       // ===== NEWSLETTER FORM SUBMISSION (Google Sheet) =====
       const form = document.getElementById("newsletterForm");
       const submitBtn = document.getElementById("submitBtn");
-      
-      // Full, correct Google Apps Script URL
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbz9lfc8QcMujHTv3qyIIFZ2O9vS16lcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF/exec'; 
+
+      // 👇 PASTE YOUR CLEAN GOOGLE APPS SCRIPT URL BETWEEN THE QUOTES BELOW 👇
+      const scriptURL =
+        "AKfycbz9lfc8QcMujHTv3qyIIFZ2O9vS16lcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF";
 
       form.addEventListener("submit", function (e) {
         e.preventDefault(); // Stop page from reloading
@@ -600,17 +610,16 @@
         submitBtn.disabled = true;
 
         const formData = new FormData(form);
-        // Convert data to a simple text format Google understands perfectly
-        const urlEncodedData = new URLSearchParams(formData).toString();
 
         fetch(scriptURL, {
           method: "POST",
-          body: urlEncodedData,
-          mode: 'no-cors' // Prevents browser security blocks
+          body: formData,
+          mode: "no-cors", // Prevents browser security blocks
         })
           .then(() => {
             // Success: Replace form with a clean thank you message
-            form.innerHTML = '<p class="success-message">thank you for subscribing.</p>';
+            form.innerHTML =
+              '<p class="success-message">thank you for subscribing.</p>';
           })
           .catch((error) => {
             console.error("Error:", error);

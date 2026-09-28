@@ -166,7 +166,7 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        margin-top: 5px; /* TWEAK: Brought closer to the countdown */
+        margin-top: 5px; /* Brought closer to countdown */
         width: 100%;
         max-width: 280px;
       }
@@ -179,9 +179,9 @@
         background: transparent;
         color: #ffffff;
         font-family: "CygnitoMono", monospace;
-        font-size: 0.75rem; /* Desktop size */
+        font-size: 0.75rem;
         outline: none;
-        text-align: left; /* TWEAK: Left-aligned text and placeholder */
+        text-align: left; /* Left-aligned text */
         transition: border-bottom-color 0.3s ease;
       }
 
@@ -589,28 +589,28 @@
       const form = document.getElementById("newsletterForm");
       const submitBtn = document.getElementById("submitBtn");
 
-      // Full, correct Google Apps Script URL (Updated with your new deployment ID)
+      // Full, correct Google Apps Script URL
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbz9lfc8QcMujHTv3qyIIFZ2O9vS16lcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF/exec";
 
       form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Stop page from reloading
+        e.preventDefault();
 
         const originalText = submitBtn.innerText;
         submitBtn.innerText = "sending...";
         submitBtn.disabled = true;
 
         const formData = new FormData(form);
-        // Convert data to a simple text format Google understands perfectly
+
+        // Convert to URL-encoded format (Guarantees Google reads name & email correctly)
         const urlEncodedData = new URLSearchParams(formData).toString();
 
         fetch(scriptURL, {
           method: "POST",
           body: urlEncodedData,
-          mode: "no-cors", // Prevents browser security blocks
+          mode: "no-cors",
         })
           .then(() => {
-            // Success: Replace form with a clean thank you message
             form.innerHTML =
               '<p class="success-message">thank you for subscribing.</p>';
           })

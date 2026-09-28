@@ -45,7 +45,8 @@
       a,
       button,
       input,
-      span {
+      span,
+      p {
         cursor: none;
       }
 
@@ -77,7 +78,8 @@
         a,
         button,
         input,
-        span {
+        span,
+        p {
           cursor: auto !important;
         }
       }
@@ -323,20 +325,26 @@
         line-height: 1;
         padding: 5px;
         transition: opacity 0.3s;
+        z-index: 10;
       }
       .modal-close:hover {
         opacity: 0.7;
       }
 
-      .modal-text {
+      /* Compact, clean paragraph spacing */
+      .modal-text p {
         font-size: 0.9rem;
-        line-height: 1.8;
+        line-height: 1.6;
         color: #ffffff;
+        margin-bottom: 16px; /* Compact but distinct spacing */
         /* Strict anti-copy for the modal text */
         -webkit-user-select: none !important;
         -moz-user-select: none !important;
         -ms-user-select: none !important;
         user-select: none !important;
+      }
+      .modal-text p:last-child {
+        margin-bottom: 0;
       }
 
       /* Mobile Responsiveness */
@@ -374,11 +382,26 @@
           font-size: 16px;
         } /* Prevents iOS zoom */
 
+        /* FIX: Compact Mobile Modal (No Scrollbar) */
         .modal-content {
           padding: 30px 20px;
+          max-height: 85vh;
+          overflow-y: auto; /* Allows invisible scroll on tiny screens */
+          scrollbar-width: none; /* Firefox: hide scrollbar */
+          -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
         }
-        .modal-text {
-          font-size: 0.85rem;
+        .modal-content::-webkit-scrollbar {
+          display: none; /* Chrome/Safari/Opera: hide scrollbar */
+        }
+
+        .modal-text p {
+          font-size: 0.8rem; /* Slightly smaller, highly legible */
+          line-height: 1.45; /* Tighter vertical rhythm */
+          margin-bottom: 12px; /* Compact spacing */
+        }
+        .modal-close {
+          top: 10px;
+          right: 10px;
         }
       }
     </style>
@@ -506,25 +529,30 @@
     <div class="modal-overlay" id="socialModal">
       <div class="modal-content">
         <button class="modal-close clickable" id="modalClose">&times;</button>
-        <p class="modal-text">
-          Stepping away from the noise. What we call "social media" has become
-          merely media, a hollow echo that serves neither the mind nor the art.
-          <br /><br />
-          It promised to bring us together, yet left friendships shallow and
-          connections entirely surface-level. It has never truly united us, nor
-          has it brought me any lasting joy. Instead, it breeds jealousy, envy,
-          and endless comparison, normalizing the quiet intrusion of stalking
-          and spying. It feeds our depression, fuels aggression, and cultivates
-          a silent violence that ultimately harms us all.
-          <br /><br />
-          I choose the quiet depth of real creation over the endless scroll. No
-          longer social, just media. And we don't need it.
-          <br /><br />
-          For upcoming music, new shows, and genuine connection, I invite you to
-          subscribe to my newsletter.
-          <br /><br />
-          Much love to you all.
-        </p>
+        <div class="modal-text">
+          <p>
+            Stepping away from the noise. What we call "social media" has become
+            merely media, a hollow echo that serves neither the mind nor the
+            art.
+          </p>
+          <p>
+            It promised to bring us together, yet left friendships shallow and
+            connections entirely surface-level. It has never truly united us,
+            nor has it brought me any lasting joy. Instead, it breeds jealousy,
+            envy, and endless comparison, normalizing the quiet intrusion of
+            stalking and spying. It feeds our depression, fuels aggression, and
+            cultivates a silent violence that ultimately harms us all.
+          </p>
+          <p>
+            I choose the quiet depth of real creation over the endless scroll.
+            No longer social, just media. And we don't need it.
+          </p>
+          <p>
+            For upcoming music, new shows, and genuine connection, I invite you
+            to subscribe to my newsletter.
+          </p>
+          <p>Much love to you all.</p>
+        </div>
       </div>
     </div>
 
@@ -561,16 +589,19 @@
           cursor.style.top = `${e.clientY}px`;
         });
         document.addEventListener("mouseover", (e) => {
-          // Added .modal-close to ensure cursor reacts inside the popup
           if (
-            e.target.closest("a, button, input, span, .clickable, .modal-close")
+            e.target.closest(
+              "a, button, input, span, p, .clickable, .modal-close",
+            )
           ) {
             cursor.classList.add("hovered");
           }
         });
         document.addEventListener("mouseout", (e) => {
           if (
-            e.target.closest("a, button, input, span, .clickable, .modal-close")
+            e.target.closest(
+              "a, button, input, span, p, .clickable, .modal-close",
+            )
           ) {
             cursor.classList.remove("hovered");
           }

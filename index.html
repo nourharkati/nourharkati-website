@@ -166,7 +166,7 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        margin-top: 5px; /* Brought closer to countdown */
+        margin-top: 5px;
         width: 100%;
         max-width: 280px;
       }
@@ -181,7 +181,7 @@
         font-family: "CygnitoMono", monospace;
         font-size: 0.75rem;
         outline: none;
-        text-align: left; /* Left-aligned text */
+        text-align: left;
         transition: border-bottom-color 0.3s ease;
       }
 
@@ -205,6 +205,7 @@
         transition: all 0.3s ease;
         min-width: 100px;
         margin-top: 5px;
+        align-self: flex-start; /* NEW: Aligns button to the left */
       }
 
       .newsletter-btn:hover:not(:disabled) {
@@ -215,24 +216,6 @@
       .newsletter-btn:disabled {
         opacity: 0.6;
         cursor: wait;
-      }
-
-      .success-message {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-        margin-top: 10px;
-        animation: fadeIn 0.5s ease;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(5px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
       }
 
       /* Links / Menu */
@@ -323,13 +306,11 @@
           font-size: 0.75rem;
         }
 
-        /* FIX: Prevents iOS Safari from auto-zooming on input focus */
         .newsletter-input {
           font-size: 16px;
         }
       }
 
-      /* Very small screens */
       @media (max-width: 360px) {
         .logo {
           max-width: 200px;
@@ -446,8 +427,8 @@
         </div>
       </div>
 
-      <!-- 5. NEWSLETTER FORM -->
-      <form class="newsletter-form" id="newsletterForm">
+      <!-- 5. NEWSLETTER FORM (Cleaned up, no Google scripts) -->
+      <form class="newsletter-form" onsubmit="event.preventDefault()">
         <!-- Anti-spam honeypot -->
         <input type="text" name="_honey" style="display: none" />
 
@@ -479,7 +460,7 @@
           data-lpignore="true"
         />
 
-        <button type="submit" class="newsletter-btn clickable" id="submitBtn">
+        <button type="submit" class="newsletter-btn clickable">
           subscribe
         </button>
       </form>
@@ -583,43 +564,6 @@
             }
           }
         });
-      });
-
-      // ===== NEWSLETTER FORM SUBMISSION (Google Sheet) =====
-      const form = document.getElementById("newsletterForm");
-      const submitBtn = document.getElementById("submitBtn");
-
-      // Full, correct Google Apps Script URL
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbz9lfc8QcMujHTv3qyIIFZ2O9vS16lcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF/exec";
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const originalText = submitBtn.innerText;
-        submitBtn.innerText = "sending...";
-        submitBtn.disabled = true;
-
-        const formData = new FormData(form);
-
-        // Convert to URL-encoded format (Guarantees Google reads name & email correctly)
-        const urlEncodedData = new URLSearchParams(formData).toString();
-
-        fetch(scriptURL, {
-          method: "POST",
-          body: urlEncodedData,
-          mode: "no-cors",
-        })
-          .then(() => {
-            form.innerHTML =
-              '<p class="success-message">thank you for subscribing.</p>';
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            submitBtn.innerText = originalText;
-            submitBtn.disabled = false;
-            alert("oops, something went wrong. please try again.");
-          });
       });
     </script>
   </body>

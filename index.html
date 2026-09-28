@@ -166,7 +166,7 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        margin-top: 15px;
+        margin-top: 5px; /* TWEAK: Brought closer to the countdown */
         width: 100%;
         max-width: 280px;
       }
@@ -181,7 +181,7 @@
         font-family: "CygnitoMono", monospace;
         font-size: 0.75rem; /* Desktop size */
         outline: none;
-        text-align: center;
+        text-align: left; /* TWEAK: Left-aligned text and placeholder */
         transition: border-bottom-color 0.3s ease;
       }
 
@@ -373,7 +373,7 @@
         <div class="image-fallback" style="display: none">NOUR HARKATI</div>
       </a>
 
-      <!-- 2. MENU (Moved right above the hello.gif) -->
+      <!-- 2. MENU -->
       <div class="links-container">
         <a
           href="https://nourharkati.bandcamp.com/"
@@ -450,8 +450,8 @@
       <form class="newsletter-form" id="newsletterForm">
         <!-- Anti-spam honeypot -->
         <input type="text" name="_honey" style="display: none" />
-        
-        <!-- Name Input (Anti-Autofill) -->
+
+        <!-- Name Input -->
         <input
           type="text"
           name="name"
@@ -465,7 +465,7 @@
           data-lpignore="true"
         />
 
-        <!-- Email Input (Anti-Autofill) -->
+        <!-- Email Input -->
         <input
           type="email"
           name="email"
@@ -588,9 +588,10 @@
       // ===== NEWSLETTER FORM SUBMISSION (Google Sheet) =====
       const form = document.getElementById("newsletterForm");
       const submitBtn = document.getElementById("submitBtn");
-      
-      // Full, correct Google Apps Script URL
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbz9lfc8QcMujHTv3qyIIFZ2O9vS16lcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF/exec'; 
+
+      // Full, correct Google Apps Script URL (Updated with your new deployment ID)
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbz9lfc8QcMujHTv3qyIIFZ2O9vS16lcnpytVejdXFEYo_7UNekhKyLBu_9j4KcOSJCF/exec";
 
       form.addEventListener("submit", function (e) {
         e.preventDefault(); // Stop page from reloading
@@ -606,11 +607,12 @@
         fetch(scriptURL, {
           method: "POST",
           body: urlEncodedData,
-          mode: 'no-cors' // Prevents browser security blocks
+          mode: "no-cors", // Prevents browser security blocks
         })
           .then(() => {
             // Success: Replace form with a clean thank you message
-            form.innerHTML = '<p class="success-message">thank you for subscribing.</p>';
+            form.innerHTML =
+              '<p class="success-message">thank you for subscribing.</p>';
           })
           .catch((error) => {
             console.error("Error:", error);

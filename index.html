@@ -30,58 +30,46 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         text-align: center;
-        padding: 40px 20px;
+        padding: 40px 20px 20px 20px;
         cursor: none;
         overflow-x: hidden;
-        /* Prevent text selection */
+        /* Strict global text selection block */
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
       }
 
-      a,
-      button,
-      input {
+      a, button, input {
         cursor: none;
       }
 
-      /* Custom Cursor - Updated Colors & Opacity */
+      /* Custom Cursor - WHITE default, BLUE hover */
       .custom-cursor {
         position: fixed;
         width: 20px;
         height: 20px;
-        background-color: #e6a35c; /* Default Gold/Orange */
+        background-color: #ffffff; /* WHITE */
         border-radius: 50%;
         pointer-events: none;
         z-index: 10000;
         transform: translate(-50%, -50%);
-        transition:
-          background-color 0.2s ease,
-          transform 0.1s ease,
-          opacity 0.2s ease;
+        transition: background-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
         mix-blend-mode: difference;
-        opacity: 0.85; /* Transparency effect */
+        opacity: 0.85;
       }
 
       .custom-cursor.hovered {
-        background-color: #5472cc; /* Hover Blue */
+        background-color: #5472cc; /* BLUE */
         transform: translate(-50%, -50%) scale(1.5);
-        opacity: 1;
+        opacity: 0.7; /* Medium opacity on hover */
       }
 
       @media (hover: none) and (pointer: coarse) {
-        .custom-cursor {
-          display: none;
-        }
-        body,
-        a,
-        button,
-        input {
-          cursor: auto !important;
-        }
+        .custom-cursor { display: none; }
+        body, a, button, input { cursor: auto !important; }
       }
 
       .container {
@@ -98,26 +86,54 @@
         text-decoration: none;
         transition: opacity 0.3s ease;
       }
-      .logo-link:hover {
-        opacity: 0.85;
-      }
+      .logo-link:hover { opacity: 0.85; }
 
-      .logo,
-      .hello-gif {
+      .logo {
         display: block;
         max-width: 100%;
         height: auto;
         object-fit: contain;
-        /* Prevent image dragging (Webkit only, standard way is HTML attribute) */
         -webkit-user-drag: none;
       }
-      .logo {
-        max-width: 320px;
-        width: 100%;
+      .logo { max-width: 320px; width: 100%; }
+
+      .links-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 5px;
       }
+      .nav-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+        transition: opacity 0.25s ease;
+        opacity: 0.85;
+        position: relative;
+      }
+      .nav-link:hover { opacity: 1; }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #ffffff;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after { width: 100%; }
+
       .hello-gif {
+        display: block;
         max-width: 400px;
         width: 100%;
+        height: auto;
+        object-fit: contain;
+        -webkit-user-drag: none;
       }
 
       .image-fallback {
@@ -133,50 +149,20 @@
         border-radius: 4px;
       }
 
-      /* Countdown - Stretched to match GIF width */
-      .countdown {
-        display: flex;
-        gap: 20px;
-        margin-top: 10px;
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 400px;
-        width: 100%;
-      }
-      .countdown-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        line-height: 1.2;
-        min-width: 50px;
-      }
-      .countdown-item span {
-        font-size: 1.1rem;
-        font-weight: bold;
-      }
-      .countdown-item small {
-        font-size: 0.65rem;
-        opacity: 0.7;
-        text-transform: lowercase;
-        margin-top: 4px;
-      }
-
-      /* Newsletter - Stretched to match GIF width */
+      /* Newsletter - Updated Layout */
       .newsletter-form {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 5px;
+        align-items: flex-start;
+        gap: 15px;
+        margin-top: 10px;
         width: 100%;
         max-width: 400px;
       }
 
       .newsletter-input {
         width: 100%;
-        padding: 8px 12px;
+        padding: 8px 0;
         border: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         background: transparent;
@@ -187,11 +173,15 @@
         text-align: left;
         transition: border-bottom-color 0.3s ease;
       }
-      .newsletter-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-      .newsletter-input:focus {
-        border-bottom-color: #ffffff;
+      .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+      .newsletter-input:focus { border-bottom-color: #ffffff; }
+
+      .newsletter-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
       }
 
       .newsletter-btn {
@@ -204,9 +194,7 @@
         letter-spacing: 1px;
         text-transform: lowercase;
         transition: all 0.3s ease;
-        min-width: 100px;
-        margin-top: 5px;
-        align-self: flex-start; /* Left aligned */
+        flex-shrink: 0;
       }
       .newsletter-btn:hover:not(:disabled) {
         background: #ffffff;
@@ -217,6 +205,32 @@
         cursor: wait;
       }
 
+      /* Countdown - STRETCHED and more breathable */
+      .countdown {
+        display: flex;
+        gap: 30px; /* Increased gap */
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+      }
+      .countdown-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.2;
+        min-width: 50px; /* Ensures they don't squeeze */
+      }
+      .countdown-item span {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .countdown-item small {
+        font-size: 0.65rem;
+        opacity: 0.7;
+        text-transform: lowercase;
+        margin-top: 3px;
+      }
+
       .success-message {
         font-size: 0.8rem;
         letter-spacing: 1px;
@@ -224,110 +238,39 @@
         animation: fadeIn 0.5s ease;
       }
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(5px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
-      .links-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 24px;
-        margin-top: 10px;
-      }
-      .nav-link {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-        text-transform: lowercase;
-        transition: opacity 0.25s ease;
-        opacity: 0.85;
-        position: relative;
-      }
-      .nav-link:hover {
-        opacity: 1;
-      }
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: #ffffff;
-        transition: width 0.3s ease;
-      }
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      .loading {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .loaded {
-        opacity: 1;
-      }
+      .loading { opacity: 0; transition: opacity 0.5s ease; }
+      .loaded { opacity: 1; }
 
       @media (max-width: 480px) {
-        body {
-          padding: 30px 15px;
-        }
-        .container {
-          gap: 20px;
-        }
-        .logo {
-          max-width: 240px;
-        }
-        .hello-gif {
-          max-width: 300px;
-        }
-        /* Keep matching widths on mobile */
-        .countdown {
-          max-width: 300px;
+        body { padding: 30px 15px 15px 15px; }
+        .container { gap: 20px; }
+        .logo { max-width: 240px; }
+        .hello-gif { max-width: 300px; }
+        .newsletter-form { max-width: 300px; }
+        .links-container { gap: 16px 20px; }
+        .nav-link { font-size: 0.75rem; }
+        .newsletter-input { font-size: 16px; }
+        
+        /* Stack countdown below button on very small screens */
+        .newsletter-bottom {
+          flex-direction: column;
+          align-items: flex-start;
           gap: 15px;
-          font-size: 0.75rem;
         }
-        .newsletter-form {
-          max-width: 300px;
-        }
-        .countdown-item span {
-          font-size: 0.95rem;
-        }
-        .links-container {
-          gap: 16px 20px;
-        }
-        .nav-link {
-          font-size: 0.75rem;
-        }
-        .newsletter-input {
-          font-size: 16px;
+        .countdown {
+          width: 100%;
+          justify-content: flex-start;
+          gap: 20px;
         }
       }
       @media (max-width: 360px) {
-        .logo {
-          max-width: 200px;
-        }
-        .hello-gif {
-          max-width: 250px;
-        }
-        .countdown {
-          max-width: 250px;
-          gap: 12px;
-        }
-        .newsletter-form {
-          max-width: 250px;
-        }
-        .countdown-item {
-          min-width: 40px;
-        }
+        .logo { max-width: 200px; }
+        .hello-gif { max-width: 250px; }
+        .newsletter-form { max-width: 250px; }
       }
     </style>
   </head>
@@ -335,12 +278,7 @@
     <div class="custom-cursor" id="customCursor"></div>
 
     <div class="container">
-      <a
-        href="https://nourharkati.net/"
-        class="logo-link clickable"
-        aria-label="Home"
-      >
-        <!-- Added draggable="false" to prevent image dragging natively -->
+      <a href="https://nourharkati.net/" class="logo-link clickable" aria-label="Home">
         <img
           src="img/logo.png"
           alt="Nour Harkati"
@@ -348,53 +286,18 @@
           id="logo"
           draggable="false"
           onload="this.classList.add('loaded')"
-          onerror="
-            this.style.display = 'none';
-            this.nextElementSibling.style.display = 'flex';
-          "
+          onerror="this.style.display = 'none'; this.nextElementSibling.style.display = 'flex';"
         />
-        <div class="image-fallback" style="display: none">NOUR HARKATI</div>
       </a>
 
       <div class="links-container">
-        <a
-          href="https://nourharkati.bandcamp.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >music</a
-        >
-        <a
-          href="https://bnds.us/ns320u"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >shows</a
-        >
-        <a
-          href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >kexp</a
-        >
-        <a
-          href="https://nourharkati.bandcamp.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >social</a
-        >
-        <a
-          href="mailto:dgaar@atomicmusicgroup.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >booking</a
-        >
+        <a href="https://nourharkati.bandcamp.com/" target="_blank" rel="noopener noreferrer" class="nav-link clickable">bandcamp</a>
+        <a href="https://bnds.us/ns320u" target="_blank" rel="noopener noreferrer" class="nav-link clickable">shows</a>
+        <a href="https://www.youtube.com/watch?v=o9s17K4tXbk" target="_blank" rel="noopener noreferrer" class="nav-link clickable">kexp</a>
+        <a href="https://www.instagram.com/nour.harkati/" target="_blank" rel="noopener noreferrer" class="nav-link clickable">social</a>
+        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link clickable">booking</a>
       </div>
 
-      <!-- Added draggable="false" to prevent image dragging natively -->
       <img
         src="img/hello.gif"
         alt="Animation"
@@ -402,38 +305,13 @@
         id="helloGif"
         draggable="false"
         onload="this.classList.add('loaded')"
-        onerror="
-          this.style.display = 'none';
-          this.nextElementSibling.style.display = 'flex';
-        "
+        onerror="this.style.display = 'none'; this.nextElementSibling.style.display = 'flex';"
       />
       <div class="image-fallback" style="display: none">[ animation ]</div>
 
-      <div class="countdown">
-        <div class="countdown-item">
-          <span id="days">00</span><small>days</small>
-        </div>
-        <div class="countdown-item">
-          <span id="hours">00</span><small>hrs</small>
-        </div>
-        <div class="countdown-item">
-          <span id="minutes">00</span><small>min</small>
-        </div>
-        <div class="countdown-item">
-          <span id="seconds">00</span><small>sec</small>
-        </div>
-      </div>
-
-      <!-- NEWSLETTER FORM (Spam Protected) -->
-      <form
-        class="newsletter-form"
-        id="newsletterForm"
-        action="https://formsubmit.co/nour.harkati@gmail.com"
-        method="POST"
-      >
-        <!-- Spam Protection: Honeypot -->
+      <!-- NEWSLETTER FORM with Stretched Countdown -->
+      <form class="newsletter-form" id="newsletterForm" action="https://formsubmit.co/nour.harkati@gmail.com" method="POST">
         <input type="text" name="_honey" style="display: none" />
-        <!-- Spam Protection: Disable visible captcha -->
         <input type="hidden" name="_captcha" value="false" />
 
         <input
@@ -460,20 +338,38 @@
           spellcheck="false"
           data-lpignore="true"
         />
-        <button type="submit" class="newsletter-btn clickable" id="submitBtn">
-          subscribe
-        </button>
+        
+        <div class="newsletter-bottom">
+          <button type="submit" class="newsletter-btn clickable" id="submitBtn">
+            subscribe
+          </button>
+          
+          <div class="countdown">
+            <div class="countdown-item">
+              <span id="days">00</span><small>days</small>
+            </div>
+            <div class="countdown-item">
+              <span id="hours">00</span><small>hrs</small>
+            </div>
+            <div class="countdown-item">
+              <span id="minutes">00</span><small>min</small>
+            </div>
+            <div class="countdown-item">
+              <span id="seconds">00</span><small>sec</small>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
 
     <script>
-      // ===== SECURITY DETERRENTS =====
-      // Disable right-click context menu
-      document.addEventListener("contextmenu", (event) =>
-        event.preventDefault(),
-      );
+      // ===== STRICT SECURITY DETERRENTS =====
+      // Disable right-click context menu globally
+      document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+      });
 
-      // Disable dragging images (Belt and suspenders approach)
+      // Disable dragging images
       document.querySelectorAll("img").forEach((img) => {
         img.addEventListener("dragstart", (event) => event.preventDefault());
       });
@@ -492,9 +388,7 @@
 
       // ===== CUSTOM CURSOR =====
       const cursor = document.getElementById("customCursor");
-      const isTouchDevice = window.matchMedia(
-        "(hover: none) and (pointer: coarse)",
-      ).matches;
+      const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
       if (!isTouchDevice && cursor) {
         document.addEventListener("mousemove", (e) => {
@@ -502,12 +396,14 @@
           cursor.style.top = `${e.clientY}px`;
         });
         document.addEventListener("mouseover", (e) => {
-          if (e.target.closest("a, button, input, .clickable"))
+          if (e.target.closest("a, button, input, .clickable")) {
             cursor.classList.add("hovered");
+          }
         });
         document.addEventListener("mouseout", (e) => {
-          if (e.target.closest("a, button, input, .clickable"))
+          if (e.target.closest("a, button, input, .clickable")) {
             cursor.classList.remove("hovered");
+          }
         });
         document.addEventListener("mouseleave", () => {
           cursor.style.opacity = "0";
@@ -525,26 +421,23 @@
           const now = new Date();
           let targetYear = now.getFullYear();
           let targetDate = new Date(targetYear, 3, 27, 0, 0, 0);
-          if (now > targetDate)
-            targetDate = new Date(targetYear + 1, 3, 27, 0, 0, 0);
+          if (now > targetDate) targetDate = new Date(targetYear + 1, 3, 27, 0, 0, 0);
           const diff = targetDate - now;
           if (diff > 0) {
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor(
-              (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-            );
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
             const daysEl = document.getElementById("days");
             const hoursEl = document.getElementById("hours");
             const minutesEl = document.getElementById("minutes");
             const secondsEl = document.getElementById("seconds");
+            
             if (daysEl) daysEl.innerText = String(days).padStart(2, "0");
             if (hoursEl) hoursEl.innerText = String(hours).padStart(2, "0");
-            if (minutesEl)
-              minutesEl.innerText = String(minutes).padStart(2, "0");
-            if (secondsEl)
-              secondsEl.innerText = String(seconds).padStart(2, "0");
+            if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, "0");
+            if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, "0");
           }
         } catch (error) {
           console.error("Countdown error:", error);
@@ -591,8 +484,7 @@
         })
           .then((response) => {
             if (response.ok) {
-              form.innerHTML =
-                '<p class="success-message">thank you for subscribing.</p>';
+              form.innerHTML = '<p class="success-message">thank you for subscribing.</p>';
             } else {
               submitBtn.innerText = originalText;
               submitBtn.disabled = false;

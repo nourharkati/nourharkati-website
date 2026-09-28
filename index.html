@@ -35,6 +35,11 @@
         padding: 40px 20px;
         cursor: none;
         overflow-x: hidden;
+        /* Prevent text selection */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
       }
 
       a,
@@ -43,28 +48,30 @@
         cursor: none;
       }
 
-      /* Custom Cursor */
+      /* Custom Cursor - Updated Colors & Opacity */
       .custom-cursor {
         position: fixed;
         width: 20px;
         height: 20px;
-        background-color: #ffffff;
+        background-color: #e6a35c; /* Default Gold/Orange */
         border-radius: 50%;
         pointer-events: none;
         z-index: 10000;
         transform: translate(-50%, -50%);
         transition:
           background-color 0.2s ease,
-          transform 0.1s ease;
+          transform 0.1s ease,
+          opacity 0.2s ease;
         mix-blend-mode: difference;
+        opacity: 0.85; /* Transparency effect */
       }
 
       .custom-cursor.hovered {
-        background-color: #5472cc;
+        background-color: #5472cc; /* Hover Blue */
         transform: translate(-50%, -50%) scale(1.5);
+        opacity: 1;
       }
 
-      /* Hide cursor on touch devices */
       @media (hover: none) and (pointer: coarse) {
         .custom-cursor {
           display: none;
@@ -86,13 +93,11 @@
         gap: 25px;
       }
 
-      /* Images - With fallbacks */
       .logo-link {
         display: inline-block;
         text-decoration: none;
         transition: opacity 0.3s ease;
       }
-
       .logo-link:hover {
         opacity: 0.85;
       }
@@ -103,19 +108,18 @@
         max-width: 100%;
         height: auto;
         object-fit: contain;
+        /* Prevent image dragging (Webkit only, standard way is HTML attribute) */
+        -webkit-user-drag: none;
       }
-
       .logo {
         max-width: 320px;
         width: 100%;
       }
-
       .hello-gif {
         max-width: 400px;
         width: 100%;
       }
 
-      /* Fallback for missing images */
       .image-fallback {
         width: 100%;
         height: 150px;
@@ -129,7 +133,7 @@
         border-radius: 4px;
       }
 
-      /* Countdown */
+      /* Countdown - Stretched to match GIF width */
       .countdown {
         display: flex;
         gap: 20px;
@@ -138,8 +142,9 @@
         letter-spacing: 1px;
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 400px;
+        width: 100%;
       }
-
       .countdown-item {
         display: flex;
         flex-direction: column;
@@ -147,12 +152,10 @@
         line-height: 1.2;
         min-width: 50px;
       }
-
       .countdown-item span {
         font-size: 1.1rem;
         font-weight: bold;
       }
-
       .countdown-item small {
         font-size: 0.65rem;
         opacity: 0.7;
@@ -160,7 +163,7 @@
         margin-top: 4px;
       }
 
-      /* Newsletter */
+      /* Newsletter - Stretched to match GIF width */
       .newsletter-form {
         display: flex;
         flex-direction: column;
@@ -168,7 +171,7 @@
         gap: 10px;
         margin-top: 5px;
         width: 100%;
-        max-width: 280px;
+        max-width: 400px;
       }
 
       .newsletter-input {
@@ -181,14 +184,12 @@
         font-family: "CygnitoMono", monospace;
         font-size: 0.75rem;
         outline: none;
-        text-align: left; /* Left-aligned text */
+        text-align: left;
         transition: border-bottom-color 0.3s ease;
       }
-
       .newsletter-input::placeholder {
         color: rgba(255, 255, 255, 0.5);
       }
-
       .newsletter-input:focus {
         border-bottom-color: #ffffff;
       }
@@ -205,14 +206,12 @@
         transition: all 0.3s ease;
         min-width: 100px;
         margin-top: 5px;
-        align-self: flex-start; /* Left-aligned button */
+        align-self: flex-start; /* Left aligned */
       }
-
       .newsletter-btn:hover:not(:disabled) {
         background: #ffffff;
         color: #d12b2b;
       }
-
       .newsletter-btn:disabled {
         opacity: 0.6;
         cursor: wait;
@@ -224,7 +223,6 @@
         margin-top: 10px;
         animation: fadeIn 0.5s ease;
       }
-
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -236,7 +234,6 @@
         }
       }
 
-      /* Links / Menu */
       .links-container {
         display: flex;
         flex-wrap: wrap;
@@ -244,7 +241,6 @@
         gap: 24px;
         margin-top: 10px;
       }
-
       .nav-link {
         color: #ffffff;
         text-decoration: none;
@@ -255,11 +251,9 @@
         opacity: 0.85;
         position: relative;
       }
-
       .nav-link:hover {
         opacity: 1;
       }
-
       .nav-link::after {
         content: "";
         position: absolute;
@@ -270,78 +264,67 @@
         background: #ffffff;
         transition: width 0.3s ease;
       }
-
       .nav-link:hover::after {
         width: 100%;
       }
 
-      /* Loading state */
       .loading {
         opacity: 0;
         transition: opacity 0.5s ease;
       }
-
       .loaded {
         opacity: 1;
       }
 
-      /* Mobile */
       @media (max-width: 480px) {
         body {
           padding: 30px 15px;
         }
-
         .container {
           gap: 20px;
         }
-
         .logo {
           max-width: 240px;
         }
-
         .hello-gif {
           max-width: 300px;
         }
-
+        /* Keep matching widths on mobile */
         .countdown {
+          max-width: 300px;
           gap: 15px;
           font-size: 0.75rem;
         }
-
+        .newsletter-form {
+          max-width: 300px;
+        }
         .countdown-item span {
           font-size: 0.95rem;
         }
-
-        .newsletter-form {
-          max-width: 100%;
-        }
-
         .links-container {
           gap: 16px 20px;
         }
-
         .nav-link {
           font-size: 0.75rem;
         }
-
         .newsletter-input {
-          font-size: 16px; /* Prevents iOS zoom */
+          font-size: 16px;
         }
       }
-
       @media (max-width: 360px) {
         .logo {
           max-width: 200px;
         }
-
         .hello-gif {
           max-width: 250px;
         }
-
         .countdown {
+          max-width: 250px;
           gap: 12px;
         }
-
+        .newsletter-form {
+          max-width: 250px;
+        }
         .countdown-item {
           min-width: 40px;
         }
@@ -352,17 +335,18 @@
     <div class="custom-cursor" id="customCursor"></div>
 
     <div class="container">
-      <!-- 1. LOGO -->
       <a
         href="https://nourharkati.net/"
         class="logo-link clickable"
         aria-label="Home"
       >
+        <!-- Added draggable="false" to prevent image dragging natively -->
         <img
           src="img/logo.png"
           alt="Nour Harkati"
           class="logo loading"
           id="logo"
+          draggable="false"
           onload="this.classList.add('loaded')"
           onerror="
             this.style.display = 'none';
@@ -372,7 +356,6 @@
         <div class="image-fallback" style="display: none">NOUR HARKATI</div>
       </a>
 
-      <!-- 2. MENU -->
       <div class="links-container">
         <a
           href="https://nourharkati.bandcamp.com/"
@@ -411,12 +394,13 @@
         >
       </div>
 
-      <!-- 3. HELLO GIF -->
+      <!-- Added draggable="false" to prevent image dragging natively -->
       <img
         src="img/hello.gif"
         alt="Animation"
         class="hello-gif loading"
         id="helloGif"
+        draggable="false"
         onload="this.classList.add('loaded')"
         onerror="
           this.style.display = 'none';
@@ -425,45 +409,33 @@
       />
       <div class="image-fallback" style="display: none">[ animation ]</div>
 
-      <!-- 4. COUNTDOWN -->
       <div class="countdown">
         <div class="countdown-item">
-          <span id="days">00</span>
-          <small>days</small>
+          <span id="days">00</span><small>days</small>
         </div>
         <div class="countdown-item">
-          <span id="hours">00</span>
-          <small>hrs</small>
+          <span id="hours">00</span><small>hrs</small>
         </div>
         <div class="countdown-item">
-          <span id="minutes">00</span>
-          <small>min</small>
+          <span id="minutes">00</span><small>min</small>
         </div>
         <div class="countdown-item">
-          <span id="seconds">00</span>
-          <small>sec</small>
+          <span id="seconds">00</span><small>sec</small>
         </div>
       </div>
 
-      <!-- 5. NEWSLETTER FORM (Simple, Direct to your Email) -->
+      <!-- NEWSLETTER FORM (Spam Protected) -->
       <form
         class="newsletter-form"
         id="newsletterForm"
         action="https://formsubmit.co/nour.harkati@gmail.com"
         method="POST"
       >
-        <!-- Anti-spam honeypot -->
+        <!-- Spam Protection: Honeypot -->
         <input type="text" name="_honey" style="display: none" />
-        <!-- Disable captcha for a clean experience -->
+        <!-- Spam Protection: Disable visible captcha -->
         <input type="hidden" name="_captcha" value="false" />
-        <!-- Custom email subject so you know exactly what this is -->
-        <input
-          type="hidden"
-          name="_subject"
-          value="New Newsletter Subscriber!"
-        />
 
-        <!-- Name Input -->
         <input
           type="text"
           name="name"
@@ -476,8 +448,6 @@
           spellcheck="false"
           data-lpignore="true"
         />
-
-        <!-- Email Input -->
         <input
           type="email"
           name="email"
@@ -490,7 +460,6 @@
           spellcheck="false"
           data-lpignore="true"
         />
-
         <button type="submit" class="newsletter-btn clickable" id="submitBtn">
           subscribe
         </button>
@@ -498,7 +467,30 @@
     </div>
 
     <script>
-      // Custom Cursor with better touch detection
+      // ===== SECURITY DETERRENTS =====
+      // Disable right-click context menu
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault(),
+      );
+
+      // Disable dragging images (Belt and suspenders approach)
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("dragstart", (event) => event.preventDefault());
+      });
+
+      // Disable keyboard shortcuts for Inspect/View Source (F12, Ctrl+U, etc.)
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "F12" ||
+          (e.ctrlKey && e.shiftKey && e.key === "I") ||
+          (e.ctrlKey && e.key === "u") ||
+          (e.metaKey && e.altKey && e.key === "I")
+        ) {
+          e.preventDefault();
+        }
+      });
+
+      // ===== CUSTOM CURSOR =====
       const cursor = document.getElementById("customCursor");
       const isTouchDevice = window.matchMedia(
         "(hover: none) and (pointer: coarse)",
@@ -509,43 +501,33 @@
           cursor.style.left = `${e.clientX}px`;
           cursor.style.top = `${e.clientY}px`;
         });
-
         document.addEventListener("mouseover", (e) => {
-          if (e.target.closest("a, button, input, .clickable")) {
+          if (e.target.closest("a, button, input, .clickable"))
             cursor.classList.add("hovered");
-          }
         });
-
         document.addEventListener("mouseout", (e) => {
-          if (e.target.closest("a, button, input, .clickable")) {
+          if (e.target.closest("a, button, input, .clickable"))
             cursor.classList.remove("hovered");
-          }
         });
-
         document.addEventListener("mouseleave", () => {
           cursor.style.opacity = "0";
         });
-
         document.addEventListener("mouseenter", () => {
-          cursor.style.opacity = "1";
+          cursor.style.opacity = "0.85";
         });
       } else if (cursor) {
         cursor.style.display = "none";
       }
 
-      // Countdown with error handling
+      // ===== COUNTDOWN =====
       function updateCountdown() {
         try {
           const now = new Date();
           let targetYear = now.getFullYear();
-          let targetDate = new Date(targetYear, 3, 27, 0, 0, 0); // April 27
-
-          if (now > targetDate) {
+          let targetDate = new Date(targetYear, 3, 27, 0, 0, 0);
+          if (now > targetDate)
             targetDate = new Date(targetYear + 1, 3, 27, 0, 0, 0);
-          }
-
           const diff = targetDate - now;
-
           if (diff > 0) {
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor(
@@ -553,12 +535,10 @@
             );
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
             const daysEl = document.getElementById("days");
             const hoursEl = document.getElementById("hours");
             const minutesEl = document.getElementById("minutes");
             const secondsEl = document.getElementById("seconds");
-
             if (daysEl) daysEl.innerText = String(days).padStart(2, "0");
             if (hoursEl) hoursEl.innerText = String(hours).padStart(2, "0");
             if (minutesEl)
@@ -570,56 +550,47 @@
           console.error("Countdown error:", error);
         }
       }
-
       updateCountdown();
       setInterval(updateCountdown, 1000);
 
-      // Preload images for better performance
+      // ===== IMAGE PRELOADING =====
       window.addEventListener("load", () => {
         const logo = document.getElementById("logo");
         const helloGif = document.getElementById("helloGif");
-
         if (logo && logo.complete) logo.classList.add("loaded");
         if (helloGif && helloGif.complete) helloGif.classList.add("loaded");
       });
 
-      // Smooth scroll for anchor links
+      // ===== SMOOTH SCROLL =====
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const href = this.getAttribute("href");
           if (href !== "#") {
             e.preventDefault();
             const target = document.querySelector(href);
-            if (target) {
-              target.scrollIntoView({ behavior: "smooth" });
-            }
+            if (target) target.scrollIntoView({ behavior: "smooth" });
           }
         });
       });
 
-      // ===== NEWSLETTER FORM SUBMISSION (AJAX) =====
+      // ===== NEWSLETTER SUBMISSION =====
       const form = document.getElementById("newsletterForm");
       const submitBtn = document.getElementById("submitBtn");
 
       form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Stop page from reloading
-
+        e.preventDefault();
         const originalText = submitBtn.innerText;
         submitBtn.innerText = "sending...";
         submitBtn.disabled = true;
-
         const formData = new FormData(form);
 
         fetch(form.action, {
           method: "POST",
           body: formData,
-          headers: {
-            Accept: "application/json", // Tells Formsubmit to reply silently, no redirect
-          },
+          headers: { Accept: "application/json" },
         })
           .then((response) => {
             if (response.ok) {
-              // Success: Replace form with a clean thank you message
               form.innerHTML =
                 '<p class="success-message">thank you for subscribing.</p>';
             } else {

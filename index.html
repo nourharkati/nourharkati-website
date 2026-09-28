@@ -181,7 +181,7 @@
         font-family: "CygnitoMono", monospace;
         font-size: 0.75rem;
         outline: none;
-        text-align: left;
+        text-align: left; /* Left-aligned text */
         transition: border-bottom-color 0.3s ease;
       }
 
@@ -205,7 +205,7 @@
         transition: all 0.3s ease;
         min-width: 100px;
         margin-top: 5px;
-        align-self: flex-start; /* NEW: Aligns button to the left */
+        align-self: flex-start; /* Left-aligned button */
       }
 
       .newsletter-btn:hover:not(:disabled) {
@@ -216,6 +216,24 @@
       .newsletter-btn:disabled {
         opacity: 0.6;
         cursor: wait;
+      }
+
+      .success-message {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Links / Menu */
@@ -307,7 +325,7 @@
         }
 
         .newsletter-input {
-          font-size: 16px;
+          font-size: 16px; /* Prevents iOS zoom */
         }
       }
 
@@ -427,10 +445,23 @@
         </div>
       </div>
 
-      <!-- 5. NEWSLETTER FORM (Cleaned up, no Google scripts) -->
-      <form class="newsletter-form" onsubmit="event.preventDefault()">
+      <!-- 5. NEWSLETTER FORM (Simple, Direct to your Email) -->
+      <form
+        class="newsletter-form"
+        id="newsletterForm"
+        action="https://formsubmit.co/nour.harkati@gmail.com"
+        method="POST"
+      >
         <!-- Anti-spam honeypot -->
         <input type="text" name="_honey" style="display: none" />
+        <!-- Disable captcha for a clean experience -->
+        <input type="hidden" name="_captcha" value="false" />
+        <!-- Custom email subject so you know exactly what this is -->
+        <input
+          type="hidden"
+          name="_subject"
+          value="New Newsletter Subscriber!"
+        />
 
         <!-- Name Input -->
         <input
@@ -460,7 +491,7 @@
           data-lpignore="true"
         />
 
-        <button type="submit" class="newsletter-btn clickable">
+        <button type="submit" class="newsletter-btn clickable" id="submitBtn">
           subscribe
         </button>
       </form>
@@ -564,6 +595,45 @@
             }
           }
         });
+      });
+
+      // ===== NEWSLETTER FORM SUBMISSION (AJAX) =====
+      const form = document.getElementById("newsletterForm");
+      const submitBtn = document.getElementById("submitBtn");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Stop page from reloading
+
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = "sending...";
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json", // Tells Formsubmit to reply silently, no redirect
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Success: Replace form with a clean thank you message
+              form.innerHTML =
+                '<p class="success-message">thank you for subscribing.</p>';
+            } else {
+              submitBtn.innerText = originalText;
+              submitBtn.disabled = false;
+              alert("oops, something went wrong. please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Formsubmit error:", error);
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            alert("oops, something went wrong. please try again.");
+          });
       });
     </script>
   </body>

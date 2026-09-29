@@ -33,55 +33,12 @@
         justify-content: center;
         text-align: center;
         padding: 40px 20px;
-        cursor: none;
         overflow-x: hidden;
         /* Strict global text selection block */
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-      }
-
-      a,
-      button,
-      input,
-      span,
-      p {
-        cursor: none;
-      }
-
-      /* Custom Cursor - Solid White, Shrinks & Turns Dark on Hover */
-      .custom-cursor {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        background-color: #ffffff; /* Solid White */
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 99999; /* FIXED: Increased to stay above the modal overlay */
-        transform: translate(-50%, -50%);
-        transition:
-          background-color 0.2s ease,
-          transform 0.2s ease;
-      }
-
-      .custom-cursor.hovered {
-        background-color: #323232; /* Dark contrast */
-        transform: translate(-50%, -50%) scale(0.6); /* Shrinks */
-      }
-
-      @media (hover: none) and (pointer: coarse) {
-        .custom-cursor {
-          display: none;
-        }
-        body,
-        a,
-        button,
-        input,
-        span,
-        p {
-          cursor: auto !important;
-        }
       }
 
       .container {
@@ -150,14 +107,13 @@
       .crossed-link {
         text-decoration: line-through;
         opacity: 0.5;
-        cursor: none !important;
       }
       .crossed-link:hover {
         opacity: 1;
-        text-decoration: line-through; /* Keep it crossed on hover */
+        text-decoration: line-through;
       }
       .crossed-link::after {
-        display: none; /* Remove the underline animation for the crossed link */
+        display: none;
       }
 
       /* MASSIVE CENTERED COUNTDOWN */
@@ -194,79 +150,18 @@
         opacity: 0.7;
       }
 
-      /* Newsletter */
-      .newsletter-form {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+      /* Newsletter Container for Bandsintown */
+      .newsletter-container {
         width: 100%;
-        max-width: 400px;
-        margin-top: 10px;
+        max-width: 320px;
+        margin-top: 20px;
       }
 
-      .newsletter-input {
+      .newsletter-container iframe {
         width: 100%;
-        padding: 8px 0;
+        height: 220px;
         border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        background: transparent;
-        color: #ffffff;
-        font-family: "CygnitoMono", monospace;
-        font-size: 0.75rem;
-        outline: none;
-        text-align: left;
-        transition: border-bottom-color 0.3s ease;
-      }
-      .newsletter-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-      .newsletter-input:focus {
-        border-bottom-color: #ffffff;
-      }
-
-      .newsletter-bottom {
-        display: flex;
-        align-items: center;
-        width: 100%;
-      }
-
-      .newsletter-btn {
-        padding: 6px 16px;
-        border: 1px solid #ffffff;
-        background: transparent;
-        color: #ffffff;
-        font-family: "CygnitoMono", monospace;
-        font-size: 0.75rem;
-        letter-spacing: 1px;
-        text-transform: lowercase;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-      }
-      .newsletter-btn:hover:not(:disabled) {
-        background: #ffffff;
-        color: #d12b2b;
-      }
-      .newsletter-btn:disabled {
-        opacity: 0.6;
-        cursor: wait;
-      }
-
-      .success-message {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-        margin-top: 10px;
-        animation: fadeIn 0.5s ease;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(5px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        display: block;
       }
 
       /* ===== MODAL POPUP ===== */
@@ -276,12 +171,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(
-          209,
-          43,
-          43,
-          0.95
-        ); /* Matches site bg with slight darkening */
+        background-color: rgba(209, 43, 43, 0.95);
         backdrop-filter: blur(5px);
         z-index: 20000;
         display: flex;
@@ -331,12 +221,11 @@
         opacity: 0.7;
       }
 
-      /* Compact, clean paragraph spacing */
       .modal-text p {
         font-size: 0.9rem;
         line-height: 1.6;
         color: #ffffff;
-        margin-bottom: 16px; /* Compact but distinct spacing */
+        margin-bottom: 16px;
         /* Strict anti-copy for the modal text */
         -webkit-user-select: none !important;
         -moz-user-select: none !important;
@@ -375,29 +264,25 @@
           margin-top: 8px;
         }
 
-        .newsletter-form {
+        .newsletter-container {
           max-width: 100%;
+          margin-top: 40px;
         }
-        .newsletter-input {
-          font-size: 16px;
-        } /* Prevents iOS zoom */
 
-        /* FIX: Compact Mobile Modal (No Scrollbar) */
         .modal-content {
           padding: 30px 20px;
           max-height: 85vh;
-          overflow-y: auto; /* Allows invisible scroll on tiny screens */
-          scrollbar-width: none; /* Firefox: hide scrollbar */
-          -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
+          overflow-y: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
         .modal-content::-webkit-scrollbar {
-          display: none; /* Chrome/Safari/Opera: hide scrollbar */
+          display: none;
         }
-
         .modal-text p {
-          font-size: 0.8rem; /* Slightly smaller, highly legible */
-          line-height: 1.45; /* Tighter vertical rhythm */
-          margin-bottom: 12px; /* Compact spacing */
+          font-size: 0.8rem;
+          line-height: 1.45;
+          margin-bottom: 12px;
         }
         .modal-close {
           top: 10px;
@@ -405,6 +290,7 @@
         }
       }
     </style>
+
     <!-- Anti-copy script in head for maximum deterrence -->
     <script>
       document.addEventListener("copy", function (e) {
@@ -416,15 +302,9 @@
     </script>
   </head>
   <body>
-    <div class="custom-cursor" id="customCursor"></div>
-
     <div class="container">
       <!-- 1. LOGO -->
-      <a
-        href="https://nourharkati.net/"
-        class="logo-link clickable"
-        aria-label="Home"
-      >
+      <a href="https://nourharkati.net/" class="logo-link" aria-label="Home">
         <img
           src="img/logo.png"
           alt="Nour Harkati"
@@ -440,30 +320,25 @@
           href="https://nourharkati.bandcamp.com/"
           target="_blank"
           rel="noopener noreferrer"
-          class="nav-link clickable"
+          class="nav-link"
           >music</a
         >
         <a
           href="https://bnds.us/ns320u"
           target="_blank"
           rel="noopener noreferrer"
-          class="nav-link clickable"
+          class="nav-link"
           >shows</a
         >
         <a
           href="https://www.youtube.com/watch?v=o9s17K4tXbk"
           target="_blank"
           rel="noopener noreferrer"
-          class="nav-link clickable"
+          class="nav-link"
           >kexp</a
         >
-        <!-- Crossed out social link that triggers modal -->
-        <span class="nav-link crossed-link clickable" id="socialToggle"
-          >social</span
-        >
-        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link clickable"
-          >booking</a
-        >
+        <span class="nav-link crossed-link" id="socialToggle">social</span>
+        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link">booking</a>
       </div>
 
       <!-- 3. MASSIVE CENTERED COUNTDOWN -->
@@ -482,53 +357,21 @@
         </div>
       </div>
 
-      <!-- 4. NEWSLETTER FORM -->
-      <form
-        class="newsletter-form"
-        id="newsletterForm"
-        action="https://formsubmit.co/9c74cf05edd63cd187be8ebd9fe4ab5b"
-        method="POST"
-      >
-        <input type="text" name="_honey" style="display: none" />
-        <input type="hidden" name="_captcha" value="false" />
-
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          class="newsletter-input clickable"
-          required
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          spellcheck="false"
-          data-lpignore="true"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          class="newsletter-input clickable"
-          required
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          spellcheck="false"
-          data-lpignore="true"
-        />
-
-        <div class="newsletter-bottom">
-          <button type="submit" class="newsletter-btn clickable" id="submitBtn">
-            subscribe
-          </button>
-        </div>
-      </form>
+      <!-- 4. BANDSINTOWN NEWSLETTER -->
+      <div class="newsletter-container">
+        <iframe
+          src="https://bandsintown.com/artist/1490660/email_signup_form?headerTextColor=rgba(255,255,255,1)&backgroundColor=rgba(209,43,43,1)&ctaBackgroundColor=rgba(209,43,43,1)&title=&headerTextStyle=bold&headerText=&font=Arial&ctaIcon=hide&ctaBorderRadius=0px&ctaBorderWidth=1px&ctaBorderColor=rgba(255,255,255,1)&ctaFontColor=rgba(255,255,255,1)&alignment=left&emailInputField=show&ctaLabel=Subscribe&layout=wide&locale=en&ctaSize=small"
+          width="100%"
+          height="220px"
+          title="newsletter-widget"
+        ></iframe>
+      </div>
     </div>
 
     <!-- MODAL POPUP -->
     <div class="modal-overlay" id="socialModal">
       <div class="modal-content">
-        <button class="modal-close clickable" id="modalClose">&times;</button>
+        <button class="modal-close" id="modalClose">&times;</button>
         <div class="modal-text">
           <p>Stepping away from the noise.</p>
           <p>
@@ -573,45 +416,6 @@
           e.preventDefault();
         }
       });
-
-      // ===== CUSTOM CURSOR =====
-      const cursor = document.getElementById("customCursor");
-      const isTouchDevice = window.matchMedia(
-        "(hover: none) and (pointer: coarse)",
-      ).matches;
-
-      if (!isTouchDevice && cursor) {
-        document.addEventListener("mousemove", (e) => {
-          cursor.style.left = `${e.clientX}px`;
-          cursor.style.top = `${e.clientY}px`;
-        });
-        document.addEventListener("mouseover", (e) => {
-          if (
-            e.target.closest(
-              "a, button, input, span, p, .clickable, .modal-close",
-            )
-          ) {
-            cursor.classList.add("hovered");
-          }
-        });
-        document.addEventListener("mouseout", (e) => {
-          if (
-            e.target.closest(
-              "a, button, input, span, p, .clickable, .modal-close",
-            )
-          ) {
-            cursor.classList.remove("hovered");
-          }
-        });
-        document.addEventListener("mouseleave", () => {
-          cursor.style.opacity = "1";
-        });
-        document.addEventListener("mouseenter", () => {
-          cursor.style.opacity = "1";
-        });
-      } else if (cursor) {
-        cursor.style.display = "none";
-      }
 
       // ===== MODAL LOGIC =====
       const socialToggle = document.getElementById("socialToggle");
@@ -671,40 +475,6 @@
       }
       updateCountdown();
       setInterval(updateCountdown, 1000);
-
-      // ===== NEWSLETTER SUBMISSION =====
-      const form = document.getElementById("newsletterForm");
-      const submitBtn = document.getElementById("submitBtn");
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const originalText = submitBtn.innerText;
-        submitBtn.innerText = "sending...";
-        submitBtn.disabled = true;
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        })
-          .then((response) => {
-            if (response.ok) {
-              form.innerHTML =
-                '<p class="success-message">thank you for subscribing.</p>';
-            } else {
-              submitBtn.innerText = originalText;
-              submitBtn.disabled = false;
-              alert("oops, something went wrong. please try again.");
-            }
-          })
-          .catch((error) => {
-            console.error("Formsubmit error:", error);
-            submitBtn.innerText = originalText;
-            submitBtn.disabled = false;
-            alert("oops, something went wrong. please try again.");
-          });
-      });
     </script>
   </body>
 </html>

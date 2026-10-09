@@ -41,7 +41,11 @@
         user-select: none;
       }
 
-      a, button, input, span, p {
+      a,
+      button,
+      input,
+      span,
+      p {
         cursor: none;
       }
 
@@ -55,7 +59,9 @@
         pointer-events: none;
         z-index: 99999;
         transform: translate(-50%, -50%);
-        transition: background-color 0.2s ease, transform 0.2s ease;
+        transition:
+          background-color 0.2s ease,
+          transform 0.2s ease;
       }
 
       .custom-cursor.hovered {
@@ -64,8 +70,17 @@
       }
 
       @media (hover: none) and (pointer: coarse) {
-        .custom-cursor { display: none; }
-        body, a, button, input, span, p { cursor: auto !important; }
+        .custom-cursor {
+          display: none;
+        }
+        body,
+        a,
+        button,
+        input,
+        span,
+        p {
+          cursor: auto !important;
+        }
       }
 
       .container {
@@ -82,7 +97,9 @@
         text-decoration: none;
         transition: opacity 0.3s ease;
       }
-      .logo-link:hover { opacity: 0.85; }
+      .logo-link:hover {
+        opacity: 0.85;
+      }
 
       .logo {
         display: block;
@@ -93,15 +110,16 @@
         -webkit-user-drag: none;
       }
 
-      /* Hello GIF Styles - Made Bigger */
+      /* Hello GIF Styles */
       .hello-gif {
         display: block;
-        max-width: 220px; /* Increased from 150px */
+        max-width: 220px;
         width: 100%;
         height: auto;
         object-fit: contain;
         -webkit-user-drag: none;
-        image-rendering: pixelated; /* Keeps pixel art crisp */
+        image-rendering: pixelated;
+        cursor: none !important;
       }
 
       .image-fallback {
@@ -117,8 +135,13 @@
         border-radius: 4px;
       }
 
-      .loading { opacity: 0; transition: opacity 0.5s ease; }
-      .loaded { opacity: 1; }
+      .loading {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .loaded {
+        opacity: 1;
+      }
 
       /* Menu */
       .links-container {
@@ -137,7 +160,9 @@
         opacity: 0.85;
         position: relative;
       }
-      .nav-link:hover { opacity: 1; }
+      .nav-link:hover {
+        opacity: 1;
+      }
       .nav-link::after {
         content: "";
         position: absolute;
@@ -148,24 +173,31 @@
         background: #ffffff;
         transition: width 0.3s ease;
       }
-      .nav-link:hover::after { width: 100%; }
+      .nav-link:hover::after {
+        width: 100%;
+      }
 
       .crossed-link {
         text-decoration: line-through;
         opacity: 0.5;
         cursor: none !important;
       }
-      .crossed-link:hover { opacity: 1; text-decoration: line-through; }
-      .crossed-link::after { display: none; }
+      .crossed-link:hover {
+        opacity: 1;
+        text-decoration: line-through;
+      }
+      .crossed-link::after {
+        display: none;
+      }
 
-      /* MASSIVE CENTERED COUNTDOWN - Resized to match menu/newsletter width */
+      /* COUNTDOWN */
       .hero-countdown {
         display: flex;
         justify-content: center;
         align-items: baseline;
-        gap: 15px; /* Tighter gap */
+        gap: 15px;
         width: 100%;
-        max-width: 400px; /* Matches the newsletter width perfectly */
+        max-width: 400px;
         margin: 10px auto 30px auto;
         flex-wrap: wrap;
       }
@@ -176,7 +208,7 @@
         line-height: 1;
       }
       .countdown-item span {
-        font-size: clamp(2rem, 6vw, 3.5rem); /* Reduced from 7rem */
+        font-size: clamp(2rem, 6vw, 3.5rem);
         font-weight: 900;
         letter-spacing: -1px;
         color: #ffffff;
@@ -190,71 +222,26 @@
         opacity: 0.7;
       }
 
-      /* Newsletter */
-      .newsletter-form {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+      /* Newsletter Container for Bandsintown */
+      .newsletter-container {
         width: 100%;
-        max-width: 400px;
+        max-width: 450px;
         margin-top: 10px;
       }
-      .newsletter-input {
+      .newsletter-container iframe {
         width: 100%;
-        padding: 8px 0;
+        height: 220px;
         border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        background: transparent;
-        color: #ffffff;
-        font-family: "CygnitoMono", monospace;
-        font-size: 0.75rem;
-        outline: none;
-        text-align: left;
-        transition: border-bottom-color 0.3s ease;
-      }
-      .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.5); }
-      .newsletter-input:focus { border-bottom-color: #ffffff; }
-
-      .newsletter-bottom {
-        display: flex;
-        align-items: center;
-        width: 100%;
-      }
-      .newsletter-btn {
-        padding: 6px 16px;
-        border: 1px solid #ffffff;
-        background: transparent;
-        color: #ffffff;
-        font-family: "CygnitoMono", monospace;
-        font-size: 0.75rem;
-        letter-spacing: 1px;
-        text-transform: lowercase;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-      }
-      .newsletter-btn:hover:not(:disabled) {
-        background: #ffffff;
-        color: #d12b2b;
-      }
-      .newsletter-btn:disabled { opacity: 0.6; cursor: wait; }
-
-      .success-message {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-        margin-top: 10px;
-        animation: fadeIn 0.5s ease;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(5px); }
-        to { opacity: 1; transform: translateY(0); }
+        display: block;
       }
 
       /* ===== MODAL POPUP ===== */
       .modal-overlay {
         position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background-color: rgba(209, 43, 43, 0.95);
         backdrop-filter: blur(5px);
         z-index: 20000;
@@ -266,7 +253,10 @@
         transition: opacity 0.4s ease;
         padding: 20px;
       }
-      .modal-overlay.active { opacity: 1; pointer-events: auto; }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
       .modal-content {
         background: #d12b2b;
@@ -279,11 +269,14 @@
         transform: translateY(20px);
         transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-      .modal-overlay.active .modal-content { transform: translateY(0); }
+      .modal-overlay.active .modal-content {
+        transform: translateY(0);
+      }
 
       .modal-close {
         position: absolute;
-        top: 15px; right: 15px;
+        top: 15px;
+        right: 15px;
         background: transparent;
         border: none;
         color: #ffffff;
@@ -293,7 +286,9 @@
         transition: opacity 0.3s;
         z-index: 10;
       }
-      .modal-close:hover { opacity: 0.7; }
+      .modal-close:hover {
+        opacity: 0.7;
+      }
 
       .modal-text p {
         font-size: 0.9rem;
@@ -305,33 +300,89 @@
         -ms-user-select: none !important;
         user-select: none !important;
       }
-      .modal-text p:last-child { margin-bottom: 0; }
+      .modal-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .album-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-bottom: 20px !important;
+        color: #ffffff;
+        text-transform: uppercase;
+      }
 
       /* Mobile Responsiveness */
       @media (max-width: 480px) {
-        body { padding: 30px 15px; }
-        .container { gap: 20px; }
-        .logo { max-width: 240px; }
-        .hello-gif { max-width: 180px; /* Scaled down slightly for mobile */ }
-        .links-container { gap: 16px 20px; }
-        .nav-link { font-size: 0.75rem; }
-        
-        .hero-countdown { gap: 10px; max-width: 100%; margin: 10px 0 20px 0; }
-        .countdown-item span { font-size: clamp(1.8rem, 8vw, 2.5rem); }
-        .countdown-item small { font-size: 0.6rem; letter-spacing: 1px; margin-top: 8px; }
-        
-        .newsletter-form { max-width: 100%; }
-        .newsletter-input { font-size: 16px; }
-        .modal-content { padding: 30px 20px; max-height: 85vh; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
-        .modal-content::-webkit-scrollbar { display: none; }
-        .modal-text p { font-size: 0.8rem; line-height: 1.45; margin-bottom: 12px; }
-        .modal-close { top: 10px; right: 10px; }
+        body {
+          padding: 30px 15px;
+        }
+        .container {
+          gap: 20px;
+        }
+        .logo {
+          max-width: 240px;
+        }
+        .hello-gif {
+          max-width: 180px;
+        }
+        .links-container {
+          gap: 16px 20px;
+        }
+        .nav-link {
+          font-size: 0.75rem;
+        }
+
+        .hero-countdown {
+          gap: 10px;
+          max-width: 100%;
+          margin: 10px 0 20px 0;
+        }
+        .countdown-item span {
+          font-size: clamp(1.8rem, 8vw, 2.5rem);
+        }
+        .countdown-item small {
+          font-size: 0.6rem;
+          letter-spacing: 1px;
+          margin-top: 8px;
+        }
+
+        .newsletter-container {
+          max-width: 100%;
+        }
+        .modal-content {
+          padding: 30px 20px;
+          max-height: 85vh;
+          overflow-y: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .modal-content::-webkit-scrollbar {
+          display: none;
+        }
+        .modal-text p {
+          font-size: 0.85rem;
+          line-height: 1.5;
+          margin-bottom: 12px;
+        }
+        .modal-close {
+          top: 10px;
+          right: 10px;
+        }
+        .album-title {
+          font-size: 1rem;
+        }
       }
     </style>
-    
+
     <script>
-      document.addEventListener("copy", function (e) { e.preventDefault(); });
-      document.addEventListener("cut", function (e) { e.preventDefault(); });
+      document.addEventListener("copy", function (e) {
+        e.preventDefault();
+      });
+      document.addEventListener("cut", function (e) {
+        e.preventDefault();
+      });
     </script>
   </head>
   <body>
@@ -339,83 +390,165 @@
 
     <div class="container">
       <!-- 1. LOGO -->
-      <a href="https://nourharkati.net/" class="logo-link clickable" aria-label="Home">
-        <img src="img/logo.png" alt="Nour Harkati" class="logo" id="logo" draggable="false" />
+      <a
+        href="https://nourharkati.net/"
+        class="logo-link clickable"
+        aria-label="Home"
+      >
+        <img
+          src="img/logo.png"
+          alt="Nour Harkati"
+          class="logo"
+          id="logo"
+          draggable="false"
+        />
       </a>
 
       <!-- 2. MENU -->
       <div class="links-container">
-        <a href="https://nourharkati.bandcamp.com/" target="_blank" rel="noopener noreferrer" class="nav-link clickable">music</a>
-        <a href="https://bnds.us/ns320u" target="_blank" rel="noopener noreferrer" class="nav-link clickable">shows</a>
-        <a href="https://www.youtube.com/watch?v=o9s17K4tXbk" target="_blank" rel="noopener noreferrer" class="nav-link clickable">kexp</a>
-        <span class="nav-link crossed-link clickable" id="socialToggle">social</span>
-        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link clickable">booking</a>
+        <a
+          href="https://nourharkati.bandcamp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >music</a
+        >
+        <a
+          href="https://bnds.us/ns320u"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >shows</a
+        >
+        <a
+          href="https://www.youtube.com/watch?v=o9s17K4tXbk"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link clickable"
+          >kexp</a
+        >
+        <span class="nav-link crossed-link clickable" id="socialToggle"
+          >social</span
+        >
+        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link clickable"
+          >booking</a
+        >
       </div>
 
-      <!-- 3. BLINK ANIMATION (GIF) -->
+      <!-- 3. BLINK ANIMATION (GIF) - Clickable for Album Modal -->
       <img
         src="img/nourharkati.png"
         alt="Blink Animation"
-        class="hello-gif loading"
+        class="hello-gif loading clickable"
         id="helloGif"
         draggable="false"
         onload="this.classList.add('loaded')"
-        onerror="this.style.display = 'none'; this.nextElementSibling.style.display = 'flex';"
+        onerror="
+          this.style.display = 'none';
+          this.nextElementSibling.style.display = 'flex';
+        "
       />
       <div class="image-fallback" style="display: none">[ animation ]</div>
 
-      <!-- 4. MASSIVE CENTERED COUNTDOWN (Resized) -->
+      <!-- 4. COUNTDOWN -->
       <div class="hero-countdown">
-        <div class="countdown-item"><span id="days">00</span><small>days</small></div>
-        <div class="countdown-item"><span id="hours">00</span><small>hrs</small></div>
-        <div class="countdown-item"><span id="minutes">00</span><small>min</small></div>
-        <div class="countdown-item"><span id="seconds">00</span><small>sec</small></div>
+        <div class="countdown-item">
+          <span id="days">00</span><small>days</small>
+        </div>
+        <div class="countdown-item">
+          <span id="hours">00</span><small>hrs</small>
+        </div>
+        <div class="countdown-item">
+          <span id="minutes">00</span><small>min</small>
+        </div>
+        <div class="countdown-item">
+          <span id="seconds">00</span><small>sec</small>
+        </div>
       </div>
 
-      <!-- 5. NEWSLETTER FORM (Flawless /ajax/ integration) -->
-      <form class="newsletter-form" id="newsletterForm" action="https://formsubmit.co/ajax/9c74cf05edd63cd187be8ebd9fe4ab5b" method="POST">
-        <input type="text" name="_honey" style="display: none" />
-        <input type="hidden" name="_captcha" value="false" />
-
-        <input type="text" name="name" placeholder="name" class="newsletter-input clickable" required autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-lpignore="true" />
-        <input type="email" name="email" placeholder="email" class="newsletter-input clickable" required autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-lpignore="true" />
-
-        <div class="newsletter-bottom">
-          <button type="submit" class="newsletter-btn clickable" id="submitBtn">subscribe</button>
-        </div>
-      </form>
+      <!-- 5. BANDSINTOWN NEWSLETTER -->
+      <div class="newsletter-container">
+        <iframe
+          src="https://bandsintown.com/artist/1490660/email_signup_form?headerTextColor=rgba(255,255,255,1)&backgroundColor=rgba(209,43,43,1)&ctaBackgroundColor=rgba(209,43,43,1)&title=&headerTextStyle=bold&headerText=&font=Arial&ctaIcon=hide&ctaBorderRadius=0px&ctaBorderWidth=3px&ctaBorderColor=rgba(255,255,255,1)&ctaFontColor=rgba(255,255,255,1)&alignment=left&emailInputField=show&ctaLabel=Subscribe&layout=wide&locale=en&ctaSize=small"
+          width="100%"
+          height="220px"
+          title="newsletter-widget"
+        ></iframe>
+      </div>
     </div>
 
-    <!-- MODAL POPUP -->
+    <!-- MODAL POPUP for SOCIAL -->
     <div class="modal-overlay" id="socialModal">
       <div class="modal-content">
         <button class="modal-close clickable" id="modalClose">&times;</button>
         <div class="modal-text">
           <p>Stepping away from the noise.</p>
-          <p>What we once called "social media" has quietly become just media, an engineered distraction that serves neither the mind nor the art.</p>
-          <p>I am choosing the quiet depth of slow, patient creation, spontaneous human interaction, and true friendship over the endless scroll, the fragmentation of our attention, and the hunger for digital applause.</p>
-          <p>Art needs room to breathe, and true connection needs a soul, not another follower.</p>
-          <p>For new music, upcoming shows, I invite you to join my newsletter and let’s gather around what matters.</p>
+          <p>
+            What we once called "social media" has quietly become just media, an
+            engineered distraction that serves neither the mind nor the art.
+          </p>
+          <p>
+            I am choosing the quiet depth of slow, patient creation, spontaneous
+            human interaction, and true friendship over the endless scroll, the
+            fragmentation of our attention, and the hunger for digital applause.
+          </p>
+          <p>
+            Art needs room to breathe, and true connection needs a soul, not
+            another follower.
+          </p>
+          <p>
+            For new music, upcoming shows, I invite you to join my newsletter
+            and let's gather around what matters.
+          </p>
           <p>Much love to you all.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL POPUP for ALBUM (Compact & Mysterious) -->
+    <div class="modal-overlay" id="albumModal">
+      <div class="modal-content">
+        <button class="modal-close clickable" id="albumModalClose">
+          &times;
+        </button>
+        <div class="modal-text">
+          <p class="album-title">Coming Soon</p>
+          <!-- <p>New sounds are quietly taking shape.</p> -->
+          <p>
+            The next chapter is being slowly woven, and new sounds are quietly taking shape.
+          </p>
+          <p>
+            Please join the newsletter to be the first to experience the
+             new album and the upcoming shows.
+          </p>
         </div>
       </div>
     </div>
 
     <script>
       // ===== STRICT SECURITY DETERRENTS =====
-      document.addEventListener("contextmenu", (event) => event.preventDefault());
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault(),
+      );
       document.querySelectorAll("img").forEach((img) => {
         img.addEventListener("dragstart", (event) => event.preventDefault());
       });
       document.addEventListener("keydown", function (e) {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u") || (e.metaKey && e.altKey && e.key === "I")) {
+        if (
+          e.key === "F12" ||
+          (e.ctrlKey && e.shiftKey && e.key === "I") ||
+          (e.ctrlKey && e.key === "u") ||
+          (e.metaKey && e.altKey && e.key === "I")
+        ) {
           e.preventDefault();
         }
       });
 
       // ===== CUSTOM CURSOR =====
       const cursor = document.getElementById("customCursor");
-      const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+      const isTouchDevice = window.matchMedia(
+        "(hover: none) and (pointer: coarse)",
+      ).matches;
 
       if (!isTouchDevice && cursor) {
         document.addEventListener("mousemove", (e) => {
@@ -423,30 +556,65 @@
           cursor.style.top = `${e.clientY}px`;
         });
         document.addEventListener("mouseover", (e) => {
-          if (e.target.closest("a, button, input, span, p, .clickable, .modal-close")) {
+          if (
+            e.target.closest(
+              "a, button, input, span, p, .clickable, .modal-close",
+            )
+          ) {
             cursor.classList.add("hovered");
           }
         });
         document.addEventListener("mouseout", (e) => {
-          if (e.target.closest("a, button, input, span, p, .clickable, .modal-close")) {
+          if (
+            e.target.closest(
+              "a, button, input, span, p, .clickable, .modal-close",
+            )
+          ) {
             cursor.classList.remove("hovered");
           }
         });
-        document.addEventListener("mouseleave", () => { cursor.style.opacity = "1"; });
-        document.addEventListener("mouseenter", () => { cursor.style.opacity = "1"; });
+        document.addEventListener("mouseleave", () => {
+          cursor.style.opacity = "1";
+        });
+        document.addEventListener("mouseenter", () => {
+          cursor.style.opacity = "1";
+        });
       } else if (cursor) {
         cursor.style.display = "none";
       }
 
-      // ===== MODAL LOGIC =====
+      // ===== MODAL LOGIC (SOCIAL) =====
       const socialToggle = document.getElementById("socialToggle");
       const socialModal = document.getElementById("socialModal");
       const modalClose = document.getElementById("modalClose");
 
-      socialToggle.addEventListener("click", () => { socialModal.classList.add("active"); });
-      modalClose.addEventListener("click", () => { socialModal.classList.remove("active"); });
+      socialToggle.addEventListener("click", () => {
+        socialModal.classList.add("active");
+      });
+      modalClose.addEventListener("click", () => {
+        socialModal.classList.remove("active");
+      });
       socialModal.addEventListener("click", (e) => {
-        if (e.target === socialModal) { socialModal.classList.remove("active"); }
+        if (e.target === socialModal) {
+          socialModal.classList.remove("active");
+        }
+      });
+
+      // ===== MODAL LOGIC (ALBUM) =====
+      const helloGif = document.getElementById("helloGif");
+      const albumModal = document.getElementById("albumModal");
+      const albumModalClose = document.getElementById("albumModalClose");
+
+      helloGif.addEventListener("click", () => {
+        albumModal.classList.add("active");
+      });
+      albumModalClose.addEventListener("click", () => {
+        albumModal.classList.remove("active");
+      });
+      albumModal.addEventListener("click", (e) => {
+        if (e.target === albumModal) {
+          albumModal.classList.remove("active");
+        }
       });
 
       // ===== COUNTDOWN LOGIC =====
@@ -455,62 +623,38 @@
           const now = new Date();
           let targetYear = now.getFullYear();
           let targetDate = new Date(targetYear, 3, 27, 0, 0, 0);
-          if (now > targetDate) targetDate = new Date(targetYear + 1, 3, 27, 0, 0, 0);
+          if (now > targetDate)
+            targetDate = new Date(targetYear + 1, 3, 27, 0, 0, 0);
           const diff = targetDate - now;
-          
+
           if (diff > 0) {
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const hours = Math.floor(
+              (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+            );
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
+
             const d = String(days).padStart(2, "0");
             const h = String(hours).padStart(2, "0");
             const m = String(minutes).padStart(2, "0");
             const s = String(seconds).padStart(2, "0");
 
-            if (document.getElementById("days")) document.getElementById("days").innerText = d;
-            if (document.getElementById("hours")) document.getElementById("hours").innerText = h;
-            if (document.getElementById("minutes")) document.getElementById("minutes").innerText = m;
-            if (document.getElementById("seconds")) document.getElementById("seconds").innerText = s;
+            if (document.getElementById("days"))
+              document.getElementById("days").innerText = d;
+            if (document.getElementById("hours"))
+              document.getElementById("hours").innerText = h;
+            if (document.getElementById("minutes"))
+              document.getElementById("minutes").innerText = m;
+            if (document.getElementById("seconds"))
+              document.getElementById("seconds").innerText = s;
           }
-        } catch (error) { console.error("Countdown error:", error); }
+        } catch (error) {
+          console.error("Countdown error:", error);
+        }
       }
       updateCountdown();
       setInterval(updateCountdown, 1000);
-
-      // ===== NEWSLETTER SUBMISSION =====
-      const form = document.getElementById("newsletterForm");
-      const submitBtn = document.getElementById("submitBtn");
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const originalText = submitBtn.innerText;
-        submitBtn.innerText = "sending...";
-        submitBtn.disabled = true;
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        })
-          .then((response) => {
-            if (response.ok) {
-              form.innerHTML = '<p class="success-message">thank you for subscribing.</p>';
-            } else {
-              submitBtn.innerText = originalText;
-              submitBtn.disabled = false;
-              alert("oops, something went wrong. please try again.");
-            }
-          })
-          .catch((error) => {
-            console.error("Formsubmit error:", error);
-            submitBtn.innerText = originalText;
-            submitBtn.disabled = false;
-            alert("oops, something went wrong. please try again.");
-          });
-      });
     </script>
   </body>
 </html>

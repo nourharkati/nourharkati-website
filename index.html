@@ -33,9 +33,7 @@
         justify-content: center;
         text-align: center;
         padding: 40px 20px;
-        cursor:
-          url("img/cursor.png") 0 0,
-          auto;
+        cursor: url("img/cursor.png") 0 0, auto;
         overflow-x: hidden;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -43,27 +41,12 @@
         user-select: none;
       }
 
-      a,
-      button,
-      input,
-      span,
-      p,
-      .clickable,
-      iframe {
-        cursor:
-          url("img/pointer.png") 0 0,
-          pointer;
+      a, button, input, span, p, .clickable, iframe {
+        cursor: url("img/pointer.png") 0 0, pointer;
       }
 
       @media (hover: none) and (pointer: coarse) {
-        body,
-        a,
-        button,
-        input,
-        span,
-        p,
-        .clickable,
-        iframe {
+        body, a, button, input, span, p, .clickable, iframe {
           cursor: auto !important;
         }
       }
@@ -77,40 +60,23 @@
         gap: 30px;
       }
 
-      /* ===== SEAMLESS LOGO HOVER ===== */
+      /* Logo */
       .logo-link {
-        position: relative;
         display: inline-block;
         text-decoration: none;
-        max-width: 320px; /* Locks the container size to prevent shifting */
-        width: 100%;
+        transition: opacity 0.3s ease;
+      }
+      .logo-link:hover {
+        opacity: 0.85;
       }
 
-      .logo-link img {
+      .logo {
         display: block;
+        max-width: 320px;
         width: 100%;
         height: auto;
         object-fit: contain;
         -webkit-user-drag: none;
-        transition: opacity 0.3s ease;
-      }
-
-      /* Hover logo perfectly overlays the default logo */
-      .logo-link .hover-logo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        pointer-events: none; /* Prevents cursor flickering during fade */
-      }
-
-      .logo-link:hover .default-logo {
-        opacity: 0;
-      }
-      .logo-link:hover .hover-logo {
-        opacity: 1;
       }
 
       /* Menu */
@@ -130,9 +96,7 @@
         opacity: 0.85;
         position: relative;
       }
-      .nav-link:hover {
-        opacity: 1;
-      }
+      .nav-link:hover { opacity: 1; }
       .nav-link::after {
         content: "";
         position: absolute;
@@ -143,21 +107,14 @@
         background: #ffffff;
         transition: width 0.3s ease;
       }
-      .nav-link:hover::after {
-        width: 100%;
-      }
+      .nav-link:hover::after { width: 100%; }
 
       .crossed-link {
         text-decoration: line-through;
         opacity: 0.5;
       }
-      .crossed-link:hover {
-        opacity: 1;
-        text-decoration: line-through;
-      }
-      .crossed-link::after {
-        display: none;
-      }
+      .crossed-link:hover { opacity: 1; text-decoration: line-through; }
+      .crossed-link::after { display: none; }
 
       /* Newsletter Container */
       .newsletter-container {
@@ -181,14 +138,12 @@
         letter-spacing: 1px;
         text-transform: lowercase;
         transition: all 0.3s ease;
-        cursor:
-          url("img/pointer.png") 0 0,
-          pointer !important;
+        cursor: url("img/pointer.png") 0 0, pointer !important;
       }
       .subscribe-btn:hover {
-        background: #000000;
-        border: 1px solid #000000;
-        color: #ffffff;
+        background: #323232;
+        border: 1px solid #323232;
+        color: #ffcfcf;
       }
       .subscribe-btn svg {
         width: 16px;
@@ -203,10 +158,8 @@
       /* ===== MODAL POPUP ===== */
       .modal-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
         background-color: rgba(209, 43, 43, 0.95);
         backdrop-filter: blur(5px);
         z-index: 20000;
@@ -218,10 +171,7 @@
         transition: opacity 0.4s ease;
         padding: 20px;
       }
-      .modal-overlay.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
+      .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
       .modal-content {
         background: #d12b2b;
@@ -234,14 +184,11 @@
         transform: translateY(20px);
         transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-      .modal-overlay.active .modal-content {
-        transform: translateY(0);
-      }
+      .modal-overlay.active .modal-content { transform: translateY(0); }
 
       .modal-close {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 15px; right: 15px;
         background: transparent;
         border: none;
         color: #ffffff;
@@ -251,9 +198,7 @@
         transition: opacity 0.3s;
         z-index: 10;
       }
-      .modal-close:hover {
-        opacity: 0.7;
-      }
+      .modal-close:hover { opacity: 0.7; }
 
       .modal-text p {
         font-size: 0.9rem;
@@ -265,9 +210,7 @@
         -ms-user-select: none !important;
         user-select: none !important;
       }
-      .modal-text p:last-child {
-        margin-bottom: 0;
-      }
+      .modal-text p:last-child { margin-bottom: 0; }
 
       .album-title {
         font-size: 1.2rem;
@@ -280,71 +223,30 @@
 
       /* Mobile Responsiveness */
       @media (max-width: 480px) {
-        body {
-          padding: 30px 15px;
-        }
-        .container {
-          gap: 20px;
-        }
-        .logo-link {
-          max-width: 240px;
-        } /* Locks mobile size */
-        .links-container {
-          gap: 16px 20px;
-        }
-        .nav-link {
-          font-size: 0.75rem;
-        }
-
-        .modal-content {
-          padding: 30px 20px;
-          max-height: 85vh;
-          overflow-y: auto;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .modal-content::-webkit-scrollbar {
-          display: none;
-        }
-        .modal-text p {
-          font-size: 0.85rem;
-          line-height: 1.5;
-          margin-bottom: 12px;
-        }
-        .modal-close {
-          top: 10px;
-          right: 10px;
-        }
-        .album-title {
-          font-size: 1rem;
-        }
-        .subscribe-btn {
-          width: 100%;
-          max-width: 250px;
-        }
+        body { padding: 30px 15px; }
+        .container { gap: 20px; }
+        .logo { max-width: 240px; }
+        .links-container { gap: 16px 20px; }
+        .nav-link { font-size: 0.75rem; }
+        
+        .modal-content { padding: 30px 20px; max-height: 85vh; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .modal-content::-webkit-scrollbar { display: none; }
+        .modal-text p { font-size: 0.85rem; line-height: 1.5; margin-bottom: 12px; }
+        .modal-close { top: 10px; right: 10px; }
+        .album-title { font-size: 1rem; }
+        .subscribe-btn { width: 100%; max-width: 250px; }
       }
     </style>
 
     <script>
-      document.addEventListener("copy", function (e) {
-        e.preventDefault();
-      });
-      document.addEventListener("cut", function (e) {
-        e.preventDefault();
-      });
-      document.addEventListener("contextmenu", (event) =>
-        event.preventDefault(),
-      );
+      document.addEventListener("copy", function (e) { e.preventDefault(); });
+      document.addEventListener("cut", function (e) { e.preventDefault(); });
+      document.addEventListener("contextmenu", (event) => event.preventDefault());
       document.querySelectorAll("img").forEach((img) => {
         img.addEventListener("dragstart", (event) => event.preventDefault());
       });
       document.addEventListener("keydown", function (e) {
-        if (
-          e.key === "F12" ||
-          (e.ctrlKey && e.shiftKey && e.key === "I") ||
-          (e.ctrlKey && e.key === "u") ||
-          (e.metaKey && e.altKey && e.key === "I")
-        ) {
+        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u") || (e.metaKey && e.altKey && e.key === "I")) {
           e.preventDefault();
         }
       });
@@ -352,55 +254,18 @@
   </head>
   <body>
     <div class="container">
-      <!-- 1. LOGO (Seamless Hover Effect) -->
-      <a
-        href="https://nourharkati.net/"
-        class="logo-link clickable"
-        aria-label="Home"
-      >
-        <img
-          src="img/logo.png"
-          alt="Nour Harkati"
-          class="default-logo"
-          draggable="false"
-        />
-        <img
-          src="img/hover-logo.png"
-          alt="Nour Harkati"
-          class="hover-logo"
-          draggable="false"
-        />
+      <!-- 1. LOGO -->
+      <a href="https://nourharkati.net/" class="logo-link clickable" aria-label="Home">
+        <img src="img/logo.png" alt="Nour Harkati" class="logo" draggable="false" />
       </a>
 
       <!-- 2. MENU -->
       <div class="links-container">
-        <a
-          href="https://nourharkati.bandcamp.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >music</a
-        >
-        <a
-          href="https://bnds.us/ns320u"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >shows</a
-        >
-        <a
-          href="https://www.youtube.com/watch?v=o9s17K4tXbk"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link clickable"
-          >kexp</a
-        >
-        <span class="nav-link crossed-link clickable" id="socialToggle"
-          >social</span
-        >
-        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link clickable"
-          >booking</a
-        >
+        <a href="https://nourharkati.bandcamp.com/" target="_blank" rel="noopener noreferrer" class="nav-link clickable">music</a>
+        <a href="https://bnds.us/ns320u" target="_blank" rel="noopener noreferrer" class="nav-link clickable">shows</a>
+        <a href="https://www.youtube.com/watch?v=o9s17K4tXbk" target="_blank" rel="noopener noreferrer" class="nav-link clickable">kexp</a>
+        <span class="nav-link crossed-link clickable" id="socialToggle">social</span>
+        <a href="mailto:dgaar@atomicmusicgroup.com" class="nav-link clickable">booking</a>
       </div>
 
       <!-- 3. CUSTOM BANDSINTOWN SUBSCRIBE BUTTON -->
@@ -408,17 +273,10 @@
         <button
           type="button"
           class="subscribe-btn clickable"
-          onclick="
-            window.open(
-              'https://www.bandsintown.com/artist-subscribe/1490660?utm_campaign=track&utm_medium=web&utm_source=track_button&came_from=247&spn=0&signature=ZZ58eda740fab820df2e1a14729f818d76ae7a57ded83b72a00f2ce70d110b0937',
-              '_blank',
-            )
-          "
+          onclick="window.open('https://www.bandsintown.com/artist-subscribe/1490660?utm_campaign=track&utm_medium=web&utm_source=track_button&came_from=247&spn=0&signature=ZZ58eda740fab820df2e1a14729f818d76ae7a57ded83b72a00f2ce70d110b0937', '_blank')"
         >
           <svg viewBox="0 0 24 24">
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           subscribe
@@ -432,23 +290,10 @@
         <button class="modal-close clickable" id="modalClose">&times;</button>
         <div class="modal-text">
           <p>Stepping away from the noise.</p>
-          <p>
-            What we once called "social media" has quietly become just media, an
-            engineered distraction that serves neither the mind nor the art.
-          </p>
-          <p>
-            I am choosing the quiet depth of slow, patient creation, spontaneous
-            human interaction, and true friendship over the endless scroll, the
-            fragmentation of our attention, and the hunger for digital applause.
-          </p>
-          <p>
-            Art needs room to breathe, and true connection needs a soul, not
-            another follower.
-          </p>
-          <p>
-            For new music, upcoming shows, I invite you to join my Bandsintown
-            newsletter and let's gather around what matters.
-          </p>
+          <p>What we once called "social media" has quietly become just media, an engineered distraction that serves neither the mind nor the art.</p>
+          <p>I am choosing the quiet depth of slow, patient creation, spontaneous human interaction, and true friendship over the endless scroll, the fragmentation of our attention, and the hunger for digital applause.</p>
+          <p>Art needs room to breathe, and true connection needs a soul, not another follower.</p>
+          <p>For new music, upcoming shows, I invite you to join my Bandsintown newsletter and let's gather around what matters.</p>
           <p>Much love to you all.</p>
         </div>
       </div>
@@ -457,19 +302,11 @@
     <!-- MODAL POPUP for ALBUM -->
     <div class="modal-overlay" id="albumModal">
       <div class="modal-content">
-        <button class="modal-close clickable" id="albumModalClose">
-          &times;
-        </button>
+        <button class="modal-close clickable" id="albumModalClose">&times;</button>
         <div class="modal-text">
           <p class="album-title">Coming Soon</p>
-          <p>
-            A new chapter is being slowly woven, and new sounds are quietly
-            taking shape.
-          </p>
-          <p>
-            Please join the newsletter to be the first to experience the new
-            album and the upcoming shows.
-          </p>
+          <p>A new chapter is being slowly woven, and new sounds are quietly taking shape.</p>
+          <p>Please join the newsletter to be the first to experience the new album and the upcoming shows.</p>
         </div>
       </div>
     </div>
@@ -480,16 +317,10 @@
       const socialModal = document.getElementById("socialModal");
       const modalClose = document.getElementById("modalClose");
 
-      socialToggle.addEventListener("click", () => {
-        socialModal.classList.add("active");
-      });
-      modalClose.addEventListener("click", () => {
-        socialModal.classList.remove("active");
-      });
+      socialToggle.addEventListener("click", () => { socialModal.classList.add("active"); });
+      modalClose.addEventListener("click", () => { socialModal.classList.remove("active"); });
       socialModal.addEventListener("click", (e) => {
-        if (e.target === socialModal) {
-          socialModal.classList.remove("active");
-        }
+        if (e.target === socialModal) { socialModal.classList.remove("active"); }
       });
     </script>
   </body>
